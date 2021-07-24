@@ -114,7 +114,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-tv mr-2 text-sm " +
+                      "fas fa-database mr-2 text-sm " +
                       (window.location.href.indexOf("/user/data") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -136,7 +136,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-tools mr-2 text-sm " +
+                      "fas fa-store mr-2 text-sm " +
                       (window.location.href.indexOf("/user/aimodel") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -158,7 +158,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-table mr-2 text-sm " +
+                      "fab fa-bitcoin mr-2 text-sm " +
                       (window.location.href.indexOf("/user/token") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -191,13 +191,13 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-table mr-2 text-sm " +
+                      "far fa-address-book mr-2 text-sm " +
                       (window.location.href.indexOf("/user/mypage") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  토큰 충전
+                  마이페이지
                 </Link>
               </li>
             </ul>

@@ -2,19 +2,16 @@ import React from 'react';
 
 // components
 
-import CardSettings from '../../components/Cards/CardSettings.js';
-import CardProfile from '../../components/Cards/CardProfile.js';
+import DataTables from '../../components/Cards/DataTables.js';
 
 export default function Data() {
   return (
     <>
-      <div className='flex flex-wrap'>
-        <div className='w-full lg:w-8/12 px-4'>
-          <CardSettings />
+      <div className='flex flex-wrap mt-4'>
+        <div className='w-full mb-12 px-4'>
+          <DataTables />
         </div>
-        <div className='w-full lg:w-4/12 px-4'>
-          <CardProfile />
-        </div>
+       
       </div>
     </>
   );

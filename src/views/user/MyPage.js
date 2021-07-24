@@ -2,19 +2,25 @@ import React from 'react';
 
 // components
 
-import CardSettings from '../../components/Cards/CardSettings.js';
-import CardProfile from '../../components/Cards/CardProfile.js';
+import MyPageSettings from '../../components/Cards/MyPageSettings.js';
+import MyPageProfile from '../../components/Cards/MyPageProfile.js';
+import MyPageTable from '../../components/Cards/MyPageTable.js'
 
 export default function MyPage() {
   return (
     <>
       <div className='flex flex-wrap'>
+        
         <div className='w-full lg:w-8/12 px-4'>
-          <CardSettings />
+          <MyPageSettings />
+          <MyPageTable />
         </div>
         <div className='w-full lg:w-4/12 px-4'>
-          <CardProfile />
+          <MyPageProfile />
         </div>
+       
+        
+
       </div>
     </>
   );
