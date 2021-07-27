@@ -1,11 +1,14 @@
 import React from 'react';
 import {createPopper} from '@popperjs/core';
-
+import { Link } from "react-router-dom";
 const UserDropdown = () => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
+  // const pagemove = ()=>{
+  //   document.location.href = "/views/user/Mypage"
+  // };
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: 'bottom-start'
@@ -15,6 +18,7 @@ const UserDropdown = () => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+  
   return (
     <>
       <a
@@ -48,38 +52,28 @@ const UserDropdown = () => {
           className={
             'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
           }
+          
           onClick={(e) => e.preventDefault()}
         >
-          Action
+          로그아웃
         </a>
-        <a
-          href='#pablo'
+        <Link
+          to='/user/Token'
           className={
             'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
           }
-          onClick={(e) => e.preventDefault()}
         >
-          Another action
-        </a>
-        <a
-          href='#pablo'
+          토크 충전
+        </Link>
+        <Link
+          to='/user/Mypage'
           className={
             'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
           }
-          onClick={(e) => e.preventDefault()}
         >
-          Something else here
-        </a>
-        <div className='h-0 my-2 border border-solid border-blueGray-100' />
-        <a
-          href='#pablo'
-          className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Seprated link
-        </a>
+          마이페이지
+        </Link>
+        
       </div>
     </>
   );
