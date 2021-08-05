@@ -1,6 +1,6 @@
 import React from 'react';
 import {createPopper} from '@popperjs/core';
-import { Link } from "react-router-dom";
+import {Link} from 'react-router-dom';
 const UserDropdown = () => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
@@ -18,7 +18,6 @@ const UserDropdown = () => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
-  
   return (
     <>
       <a
@@ -52,7 +51,7 @@ const UserDropdown = () => {
           className={
             'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
           }
-          
+
           onClick={(e) => e.preventDefault()}
         >
           로그아웃
@@ -73,7 +72,7 @@ const UserDropdown = () => {
         >
           마이페이지
         </Link>
-        
+
       </div>
     </>
   );

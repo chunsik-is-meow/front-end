@@ -23,7 +23,7 @@ export default function AiTable({color}) {
                   (color === 'light' ? 'text-blueGray-700' : 'text-white')
                 }
               >
-                AI Model 
+                AI Model
               </h3>
             </div>
           </div>
@@ -71,7 +71,7 @@ export default function AiTable({color}) {
                       : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
                   }
                 >
-                  제작자 
+                  제작자
                 </th>
                 <th
                   className={
@@ -81,7 +81,7 @@ export default function AiTable({color}) {
                       : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
                   }
                 >
-                  제작 날짜 
+                  제작 날짜
                 </th>
                 <th
                   className={

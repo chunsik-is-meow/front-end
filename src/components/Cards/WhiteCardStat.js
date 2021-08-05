@@ -10,7 +10,6 @@ export default function WhiteCardStats({
   statDescripiron,
   statIconName,
   statIconColor
-  
 }) {
   return (
     <>

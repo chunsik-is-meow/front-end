@@ -11,7 +11,6 @@ export default function Data() {
         <div className='w-full mb-12 px-4'>
           <DataTables />
         </div>
-       
       </div>
     </>
   );

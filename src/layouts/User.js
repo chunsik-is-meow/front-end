@@ -1,15 +1,14 @@
 import React from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
+import {Switch, Redirect} from 'react-router-dom';
 
 // components
-
-import AdminNavbar from 'components/Navbars/AdminNavbar.js';
-import Sidebar from 'components/Sidebar/Sidebar.js';
-import HeaderStats from 'components/Headers/HeaderStats.js';
-import FooterAdmin from 'components/Footers/FooterAdmin.js';
+import AdminNavbar from '../components/Navbars/AdminNavbar.js';
+import Sidebar from '../components/Sidebar/Sidebar.js';
+import HeaderStats from '../components/Headers/HeaderStats.js';
+import FooterAdmin from '../components/Footers/FooterAdmin.js';
+import RouteWithAuth from '../components/Route/RouteWithAuth.js';
 
 // views
-
 import Data from '../views/user/Data';
 import AIModel from '../views/user/AIModel';
 import Token from '../views/user/Token';
@@ -25,10 +24,10 @@ export default function User() {
         <HeaderStats />
         <div className='px-4 md:px-10 mx-auto w-full -m-24'>
           <Switch>
-            <Route path='/user/data' exact component={Data} />
-            <Route path='/user/aimodel' exact component={AIModel} />
-            <Route path='/user/token' exact component={Token} />
-            <Route path='/user/mypage' exact component={MyPage} />
+            <RouteWithAuth path='/user/data' exact component={Data} />
+            <RouteWithAuth path='/user/aimodel' exact component={AIModel} />
+            <RouteWithAuth path='/user/token' exact component={Token} />
+            <RouteWithAuth path='/user/mypage' exact component={MyPage} />
             <Redirect from='/' to='/admin/dashboard' />
           </Switch>
           <FooterAdmin />

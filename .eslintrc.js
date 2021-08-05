@@ -208,7 +208,7 @@ module.exports = {
     "react/no-unknown-property": 2, // Prevent usage of unknown DOM property
     "react/react-in-jsx-scope": 2, // Prevent missing React when using JSX
     "react/self-closing-comp": 2, // Prevent extra closing tags for components without children
-    "react/prop-types": ["error", { "ignore": ["absolute"]}],
+    "react/prop-types": "off",
     "wrap-regex": "error", // Prevent missing parentheses around multilines JSX
   },
 };

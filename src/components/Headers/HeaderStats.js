@@ -24,7 +24,6 @@ export default function HeaderStats() {
                   statDescripiron='Since last month'
                   statIconName='far fa-chart-bar'
                   statIconColor='bg-red-500'
-                  
                 />
               </div>
               <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>

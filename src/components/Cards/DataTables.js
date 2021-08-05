@@ -23,7 +23,7 @@ export default function DataTables({color}) {
                   (color === 'light' ? 'text-blueGray-700' : 'text-white')
                 }
               >
-                공공 데이터 
+                공공 데이터
               </h3>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function DataTables({color}) {
                       : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
                   }
                 >
-                  제작 날짜 
+                  제작 날짜
                 </th>
                 <th
                   className={

@@ -72,7 +72,6 @@ export default function MyPageTable({color}) {
                       : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
                   }
                 />
-               
               </tr>
             </thead>
             <tbody>
@@ -98,8 +97,6 @@ export default function MyPageTable({color}) {
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                   <i className='fas fa-circle text-orange-500 mr-2' /> pending
                 </td>
-                
-                
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right'>
                   <TableDropdown />
                 </td>
@@ -127,8 +124,6 @@ export default function MyPageTable({color}) {
                   <i className='fas fa-circle text-emerald-500 mr-2' />{' '}
                   completed
                 </td>
-                
-                  
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right'>
                   <TableDropdown />
                 </td>
@@ -182,7 +177,6 @@ export default function MyPageTable({color}) {
                   <i className='fas fa-circle text-teal-500 mr-2' /> on
                   schedule
                 </td>
-                
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right'>
                   <TableDropdown />
                 </td>

@@ -10,7 +10,6 @@ export default function CardStats({
   statDescripiron,
   statIconName,
   statIconColor
-  
 }) {
   return (
     <>

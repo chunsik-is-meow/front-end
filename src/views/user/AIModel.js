@@ -12,7 +12,6 @@ export default function AIModel() {
         <div className='w-full mb-12 px-4'>
           <AITables />
         </div>
-       
       </div>
     </>
   );
