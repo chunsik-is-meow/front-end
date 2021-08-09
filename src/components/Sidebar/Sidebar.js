@@ -26,7 +26,7 @@ export default function Sidebar() {
           >
            MOT 
           </Link>
-          <h3 class="text-xs">Model Of ai and public data Trade</h3>
+          <h3 className="text-xs">Model Of ai and public data Trade</h3>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
@@ -199,6 +199,27 @@ export default function Sidebar() {
                     }
                   ></i>{" "}
                   마이페이지
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/user/transaction") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/user/transaction"
+                >
+                  <i
+                    className={
+                      "far fa-address-book mr-2 text-sm " +
+                      (window.location.href.indexOf("/user/transaction") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  거래내역
                 </Link>
               </li>
             </ul>
