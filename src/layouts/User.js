@@ -13,6 +13,7 @@ import Data from '../views/user/Data';
 import AIModel from '../views/user/AIModel';
 import Token from '../views/user/Token';
 import MyPage from '../views/user/MyPage';
+import Transaction from '../views/user/Transaction';
 
 export default function User() {
   return (
@@ -28,6 +29,7 @@ export default function User() {
             <RouteWithAuth path='/user/aimodel' exact component={AIModel} />
             <RouteWithAuth path='/user/token' exact component={Token} />
             <RouteWithAuth path='/user/mypage' exact component={MyPage} />
+            <RouteWithAuth path='/user/transaction' exact component={Transaction} />
             <Redirect from='/' to='/admin/dashboard' />
           </Switch>
           <FooterAdmin />

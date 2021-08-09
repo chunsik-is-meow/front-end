@@ -16,8 +16,8 @@ export default function HeaderStats() {
             <div className='flex flex-wrap'>
               <div className='w-full lg:w-6/12 xl:w-3/12 px-4 '>
                 <WhiteCardStats
-                  statSubtitle='TRAFFIC'
-                  statTitle='350,897'
+                  statSubtitle='BLOCK HEIGHT'
+                  statTitle='350897'
                   statArrow='up'
                   statPercent='3.48'
                   statPercentColor='text-emerald-500'
@@ -28,8 +28,8 @@ export default function HeaderStats() {
               </div>
               <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>
                 <CardStats
-                  statSubtitle='NEW USERS'
-                  statTitle='2,356'
+                  statSubtitle='NUMBER OF DATA'
+                  statTitle='2356'
                   statArrow='down'
                   statPercent='3.48'
                   statPercentColor='text-red-500'
@@ -40,7 +40,7 @@ export default function HeaderStats() {
               </div>
               <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>
                 <WhiteCardStats
-                  statSubtitle='SALES'
+                  statSubtitle='NUMBER OF AI-MODEL'
                   statTitle='924'
                   statArrow='down'
                   statPercent='1.10'
@@ -52,8 +52,8 @@ export default function HeaderStats() {
               </div>
               <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>
                 <CardStats
-                  statSubtitle='PERFORMANCE'
-                  statTitle='49,65%'
+                  statSubtitle='MEOW COIN'
+                  statTitle='2300'
                   statArrow='up'
                   statPercent='12'
                   statPercentColor='text-emerald-500'
