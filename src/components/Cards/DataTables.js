@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PublicData from '../data/PublicData.js';
-
-// components
-// import TableDropdown from 'components/Dropdowns/TableDropdown.js';
+import {Pagination} from 'components/Pagination/Pagination.js';
 
 const headattr = ['name', 'desc', 'download', 'org', 'date'];
 
@@ -128,8 +126,12 @@ export default function DataTable({color}) {
             <TableHead attrs={headattr}/>
             <TableBody attrs={headattr} items={PublicData} />
           </table>
+          <div className='ml-4'>
+            <Pagination/>
+          </div>
         </div>
       </div>
+
     </>
   );
 }
