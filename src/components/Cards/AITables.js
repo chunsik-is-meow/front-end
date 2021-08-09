@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import TableDropdown from 'components/Dropdowns/TableDropdown.js';
 
-export default function AiTable({color}) {
+export default function AiTables({color}) {
   return (
     <>
       <div
@@ -41,7 +41,7 @@ export default function AiTable({color}) {
                       : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
                   }
                 >
-                  모델 이름
+                  이름
                 </th>
                 <th
                   className={
@@ -51,7 +51,7 @@ export default function AiTable({color}) {
                       : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
                   }
                 >
-                  가격
+                  설명
                 </th>
                 <th
                   className={
@@ -61,7 +61,7 @@ export default function AiTable({color}) {
                       : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
                   }
                 >
-                  사용 언어
+                  다운로드 횟수
                 </th>
                 <th
                   className={
@@ -71,7 +71,7 @@ export default function AiTable({color}) {
                       : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
                   }
                 >
-                  제작자
+                  기관명
                 </th>
                 <th
                   className={
@@ -310,10 +310,10 @@ export default function AiTable({color}) {
   );
 }
 
-AiTable.defaultProps = {
+AiTables.defaultProps = {
   color: 'light'
 };
 
-AiTable.propTypes = {
+AiTables.propTypes = {
   color: PropTypes.oneOf(['light', 'dark'])
 };

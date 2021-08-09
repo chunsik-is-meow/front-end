@@ -1,11 +1,105 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PublicData from '../data/PublicData.js';
 
 // components
+// import TableDropdown from 'components/Dropdowns/TableDropdown.js';
 
-import TableDropdown from 'components/Dropdowns/TableDropdown.js';
+const headattr = ['name', 'desc', 'download', 'org', 'date'];
 
-export default function DataTables({color}) {
+const TableHeaderComponent = (props) => {
+  const {attr, color} = props;
+  return (
+    <th
+      className={
+        'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
+        (color === 'light'
+          ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+          : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
+      }
+    >
+      {attr}
+    </th>
+  );
+};
+const TableHead = (props) => {
+  const {attrs} = props;
+  return (
+    <thead>
+      <tr>
+        {attrs.map((attr, idx) => <TableHeaderComponent key={`thead-${idx}`} attr={attr} color='light' />)}
+      </tr>
+    </thead>
+  );
+};
+
+const TableBodyComponent = (props) => {
+  const {item, attr, color} = props;
+  if (attr === 'name') {
+    return (
+      <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center'>
+        <span
+          className={
+            'ml-3 font-bold ' +
+            +(color === 'light' ? 'text-blueGray-600' : 'text-white')
+          }
+        >
+          {item[attr]}
+        </span>
+      </td>
+    );
+  } else if (attr === 'desc') {
+    return (
+      <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
+        {item[attr]}
+      </td>
+    );
+  } else if (attr === 'download') {
+    return (
+      <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
+        <i className='fas fa-circle text-emerald-500 mr-2' />{' '}
+        {item[attr]}
+      </td>
+    );
+  } else if (attr === 'org') {
+    return (
+      <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
+        <div className='flex'>
+          {item[attr]}
+        </div>
+      </td>
+    );
+  } else {
+    return (
+      <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
+        <div className='flex items-center'>
+          {item[attr]}
+        </div>
+      </td>
+    );
+  }
+};
+
+const TableRow = (props) => {
+  const {item, attrs} = props;
+  return (
+    <tr>
+      {attrs.map((attr, idx) => <TableBodyComponent key={`tbody2-${idx}`} item={item} attr={attr} />)}
+    </tr>
+  );
+};
+
+const TableBody = (props) => {
+  const {items, attrs} = props;
+  return (
+    <tbody>
+      {items.map((item, idx) => <TableRow key={`tbody-${idx}`} item={item} attrs={attrs} />)}
+    </tbody>
+  );
+};
+
+
+export default function DataTable({color}) {
   return (
     <>
       <div
@@ -23,7 +117,7 @@ export default function DataTables({color}) {
                   (color === 'light' ? 'text-blueGray-700' : 'text-white')
                 }
               >
-                공공 데이터
+                공공데이터
               </h3>
             </div>
           </div>
@@ -31,278 +125,8 @@ export default function DataTables({color}) {
         <div className='block w-full overflow-x-auto'>
           {/* Projects table */}
           <table className='items-center w-full bg-transparent border-collapse'>
-            <thead>
-              <tr>
-                <th
-                  className={
-                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
-                    (color === 'light'
-                      ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                      : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
-                  }
-                >
-                  이름
-                </th>
-                <th
-                  className={
-                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
-                    (color === 'light'
-                      ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                      : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
-                  }
-                >
-                  설명
-                </th>
-                <th
-                  className={
-                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
-                    (color === 'light'
-                      ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                      : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
-                  }
-                >
-                  다운로드 횟수
-                </th>
-                <th
-                  className={
-                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
-                    (color === 'light'
-                      ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                      : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
-                  }
-                >
-                  기관명
-                </th>
-                <th
-                  className={
-                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
-                    (color === 'light'
-                      ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                      : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
-                  }
-                >
-                  제작 날짜
-                </th>
-                <th
-                  className={
-                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
-                    (color === 'light'
-                      ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                      : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
-                  }
-                />
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center'>
-                  <img
-                    src={require('assets/img/bootstrap.jpg').default}
-                    className='h-12 w-12 bg-white rounded-full border'
-                    alt='...'
-                  />{' '}
-                  <span
-                    className={
-                      'ml-3 font-bold ' +
-                      +(color === 'light' ? 'text-blueGray-600' : 'text-white')
-                    }
-                  >
-                    Argon Design System
-                  </span>
-                </th>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  $2,500 USD
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <i className='fas fa-circle text-orange-500 mr-2' /> pending
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <div className='flex'>
-                    <img
-                      src={require('assets/img/team-1-800x800.jpg').default}
-                      alt='...'
-                      className='w-10 h-10 rounded-full border-2 border-blueGray-50 shadow'
-                    />
-                     부산대학교
-                  </div>
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <div className='flex items-center'>
-                    00/00/00
-                  </div>
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right'>
-                  <TableDropdown />
-                </td>
-              </tr>
-              <tr>
-                <th className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center'>
-                  <img
-                    src={require('assets/img/angular.jpg').default}
-                    className='h-12 w-12 bg-white rounded-full border'
-                    alt='...'
-                  />{' '}
-                  <span
-                    className={
-                      'ml-3 font-bold ' +
-                      +(color === 'light' ? 'text-blueGray-600' : 'text-white')
-                    }
-                  >
-                    Angular Now UI Kit PRO
-                  </span>
-                </th>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  $1,800 USD
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <i className='fas fa-circle text-emerald-500 mr-2' />{' '}
-                  completed
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <div className='flex'>
-                    <img
-                      src={require('assets/img/team-1-800x800.jpg').default}
-                      alt='...'
-                      className='w-10 h-10 rounded-full border-2 border-blueGray-50 shadow'
-                    />
-                    00
-                  </div>
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <div className='flex items-center'>
-                    00/00/00
-                  </div>
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right'>
-                  <TableDropdown />
-                </td>
-              </tr>
-              <tr>
-                <th className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center'>
-                  <img
-                    src={require('assets/img/sketch.jpg').default}
-                    className='h-12 w-12 bg-white rounded-full border'
-                    alt='...'
-                  />{' '}
-                  <span
-                    className={
-                      'ml-3 font-bold ' +
-                      +(color === 'light' ? 'text-blueGray-600' : 'text-white')
-                    }
-                  >
-                    Black Dashboard Sketch
-                  </span>
-                </th>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  $3,150 USD
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <i className='fas fa-circle text-red-500 mr-2' /> delayed
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <div className='flex'>
-                    <img
-                      src={require('assets/img/team-2-800x800.jpg').default}
-                      alt='...'
-                      className='w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4'
-                    />
-                    000
-                  </div>
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <div className='flex items-center'>
-                    00/00/00
-                  </div>
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right'>
-                  <TableDropdown />
-                </td>
-              </tr>
-              <tr>
-                <th className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center'>
-                  <img
-                    src={require('assets/img/react.jpg').default}
-                    className='h-12 w-12 bg-white rounded-full border'
-                    alt='...'
-                  />{' '}
-                  <span
-                    className={
-                      'ml-3 font-bold ' +
-                      +(color === 'light' ? 'text-blueGray-600' : 'text-white')
-                    }
-                  >
-                    React Material Dashboard
-                  </span>
-                </th>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  $4,400 USD
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <i className='fas fa-circle text-teal-500 mr-2' /> on
-                  schedule
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <div className='flex'>
-                    <img
-                      src={require('assets/img/team-3-800x800.jpg').default}
-                      alt='...'
-                      className='w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4'
-                    />
-                    000
-                  </div>
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <div className='flex items-center'>
-                    00/00/00
-                  </div>
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right'>
-                  <TableDropdown />
-                </td>
-              </tr>
-              <tr>
-                <th className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center'>
-                  <img
-                    src={require('assets/img/vue.jpg').default}
-                    className='h-12 w-12 bg-white rounded-full border'
-                    alt='...'
-                  />{' '}
-                  <span
-                    className={
-                      'ml-3 font-bold ' +
-                      +(color === 'light' ? 'text-blueGray-600' : 'text-white')
-                    }
-                  >
-                    React Material Dashboard
-                  </span>
-                </th>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  $2,200 USD
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <i className='fas fa-circle text-emerald-500 mr-2' />{' '}
-                  completed
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <div className='flex'>
-                    <img
-                      src={require('assets/img/team-4-470x470.png').default}
-                      alt='...'
-                      className='w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4'
-                    />
-                    000
-                  </div>
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  <div className='flex items-center'>
-                    00/00/00
-                  </div>
-                </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right'>
-                  <TableDropdown />
-                </td>
-              </tr>
-            </tbody>
+            <TableHead attrs={headattr}/>
+            <TableBody attrs={headattr} items={PublicData} />
           </table>
         </div>
       </div>
@@ -310,10 +134,10 @@ export default function DataTables({color}) {
   );
 }
 
-DataTables.defaultProps = {
+DataTable.defaultProps = {
   color: 'light'
 };
 
-DataTables.propTypes = {
+DataTable.propTypes = {
   color: PropTypes.oneOf(['light', 'dark'])
 };
