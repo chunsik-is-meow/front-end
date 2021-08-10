@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AIData from 'components/data/AIData';
+import TransactionData from 'components/data/TransactionData';
 import {Pagination} from 'components/Pagination/Pagination.js';
+
 // components
 
-
-const headattr = ['name', 'price', 'download', 'producer', 'date'];
+const headattr = ['From', 'to', 'price', 'date'];
 
 const TableHeaderComponent = (props) => {
   const {attr, color} = props;
-  if (attr === 'name') {
+  if (attr === 'From') {
     return (
       <th
         className={
@@ -18,7 +18,19 @@ const TableHeaderComponent = (props) => {
             ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
             : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
         }
-      > 이름
+      > 보낸 사람
+      </th>
+    );
+  } else if (attr === 'to') {
+    return (
+      <th
+        className={
+          'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
+          (color === 'light'
+            ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+            : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
+        }
+      > 받는 사람
       </th>
     );
   } else if (attr === 'price') {
@@ -31,30 +43,6 @@ const TableHeaderComponent = (props) => {
             : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
         }
       > 가격
-      </th>
-    );
-  } else if (attr === 'download') {
-    return (
-      <th
-        className={
-          'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
-          (color === 'light'
-            ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-            : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
-        }
-      > 다운로드 횟수
-      </th>
-    );
-  } else if (attr === 'producer') {
-    return (
-      <th
-        className={
-          'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
-          (color === 'light'
-            ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-            : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
-        }
-      > 제작자
       </th>
     );
   } else {
@@ -84,7 +72,7 @@ const TableHead = (props) => {
 
 const TableBodyComponent = (props) => {
   const {item, attr, color} = props;
-  if (attr === 'name') {
+  if (attr === 'From') {
     return (
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center'>
         <span
@@ -97,25 +85,16 @@ const TableBodyComponent = (props) => {
         </span>
       </td>
     );
+  } else if (attr === 'to') {
+    return (
+      <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
+        {item[attr]}
+      </td>
+    );
   } else if (attr === 'price') {
     return (
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
         {item[attr]} meow
-      </td>
-    );
-  } else if (attr === 'download') {
-    return (
-      <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-        <i className='fas fa-circle text-emerald-500 mr-2' />{' '}
-        {item[attr]}
-      </td>
-    );
-  } else if (attr === 'producer') {
-    return (
-      <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-        <div className='flex'>
-          {item[attr]}
-        </div>
       </td>
     );
   } else {
@@ -148,7 +127,7 @@ const TableBody = (props) => {
 };
 
 
-export default function AITable({color}) {
+export default function MyPageTable({color}) {
   return (
     <>
       <div
@@ -166,7 +145,7 @@ export default function AITable({color}) {
                   (color === 'light' ? 'text-blueGray-700' : 'text-white')
                 }
               >
-                AI Model
+                거래 내역
               </h3>
             </div>
           </div>
@@ -174,11 +153,11 @@ export default function AITable({color}) {
         <div className='block w-full overflow-x-auto'>
           {/* Projects table */}
           <table className='items-center w-full bg-transparent border-collapse'>
-            <TableHead attrs={headattr}/>
-            <TableBody attrs={headattr} items={AIData} />
+            <TableHead attrs={headattr} />
+            <TableBody attrs={headattr} items={TransactionData} />
           </table>
           <div className='m-4'>
-            <Pagination/>
+            <Pagination />
           </div>
         </div>
       </div>
@@ -187,10 +166,10 @@ export default function AITable({color}) {
   );
 }
 
-AITable.defaultProps = {
+MyPageTable.defaultProps = {
   color: 'light'
 };
 
-AITable.propTypes = {
+MyPageTable.propTypes = {
   color: PropTypes.oneOf(['light', 'dark'])
 };

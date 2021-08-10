@@ -1,7 +1,7 @@
 import React from 'react';
 
 // components
-import MyPageTable from '../../components/Cards/MyPageTable.js';
+import MyPageTable from '../../components/Cards/MyPageTables.js';
 
 export default function Transaction() {
   return (

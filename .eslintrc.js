@@ -119,7 +119,7 @@ module.exports = {
     "no-shadow-restricted-names": 2, // disallow shadowing of names such as arguments
     "no-undef-init": 2, // disallow use of undefined when initializing variables
     "no-undefined": 2, // disallow use of undefined variable (off by default)
-    "no-unused-vars": 2, // disallow declaration of variables that are not used in the code
+    // "no-unused-vars": 2, // disallow declaration of variables that are not used in the code
     "no-use-before-define": 2, // disallow use of variables before they are defined
 
     //
