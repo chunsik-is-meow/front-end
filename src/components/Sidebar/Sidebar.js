@@ -159,7 +159,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fab fa-bitcoin mr-2 text-sm " +
+                      "fas fa-donate mr-2 text-sm " +
                       (window.location.href.indexOf("/user/token") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -213,7 +213,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "far fa-address-book mr-2 text-sm " +
+                      "fas fa-shopping-bag mr-2 text-sm " +
                       (window.location.href.indexOf("/user/transaction") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")

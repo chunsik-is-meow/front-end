@@ -38,7 +38,7 @@ export default function DataTable({color}) {
           <>
             <div
               className='justify-center items-center flex overflow-x-hidden overflow-y-auto inset-0 z-50 outline-none absolute focus:outline-none'
-              style={{top: '30%', left: '30%', transform: 'translate( - 50 % ,  - 50 % )'}}
+              style={{top: '20%', left: '30%', transform: 'translate( - 50 % ,  - 50 % )'}}
               onClick={() => setShowModal(false)}
             >
               <div className='relative w-auto my-6 mx-auto max-w-sm'>
@@ -60,6 +60,18 @@ export default function DataTable({color}) {
                   </div>
                   {/* body*/}
                   <div className='relative p-6 flex-auto'>
+                    <p className='inline-block m-2 border-2 border-emerald-500'>
+                    확장자 
+                    </p>
+                    <p className='inline-block p-2'>
+                    분류체계
+                    </p>
+                    <p className='inline-block p-2'>
+                    부서명 
+                    </p>
+                    <p className='inline-block p-2'>
+                    부서명 전화번호 
+                    </p>
                     <p className='my-4 text-blueGray-500 text-lg leading-relaxed'>
                     I always felt like I could do anything. That’s the main
                     thing people are controlled by!
