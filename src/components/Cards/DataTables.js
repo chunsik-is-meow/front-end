@@ -1,10 +1,107 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import PublicData from '../data/PublicData.js';
 import {Pagination} from 'components/Pagination/Pagination.js';
 // import Modal from 'components/Modals/Modal.js';
 
 const headattr = ['name', 'desc', 'download', 'org', 'date', 'add'];
+
+export default function DataTable({color}) {
+  const [showModal, setShowModal] = useState(false);
+  const handleShowModal = (flag) => {
+    setShowModal(flag);
+    console.log('hihi');
+  };
+  return (
+    <>
+      <div
+        className={
+          'relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded ' +
+          (color === 'light' ? 'bg-white' : 'bg-lightBlue-900 text-white')
+        }
+      >
+        <div className='rounded-t mb-0 px-4 py-3 border-0'>
+          <div className='flex flex-wrap items-center'>
+            <div className='relative w-full px-4 max-w-full flex-grow flex-1'>
+              <h3
+                className={
+                  'font-semibold text-lg ' +
+                  (color === 'light' ? 'text-blueGray-700' : 'text-white')
+                }
+              >
+                공공데이터
+              </h3>
+            </div>
+          </div>
+        </div>
+        {showModal ?
+          <>
+            <div
+              className='justify-center items-center flex overflow-x-hidden overflow-y-auto inset-0 z-50 outline-none absolute focus:outline-none'
+              style={{top: '30%', left: '30%', transform: 'translate( - 50 % ,  - 50 % )'}}
+              onClick={() => setShowModal(false)}
+            >
+              <div className='relative w-auto my-6 mx-auto max-w-sm'>
+                {/* content*/}
+                <div className='border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
+                  {/* header*/}
+                  <div className='flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t'>
+                    <h3 className='text-3xl font-semibold'>
+                    Modal Title
+                    </h3>
+                    <button
+                      className='p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
+                      onClick={() => setShowModal(false)}
+                    >
+                      <span className='bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none'>
+                      ×
+                      </span>
+                    </button>
+                  </div>
+                  {/* body*/}
+                  <div className='relative p-6 flex-auto'>
+                    <p className='my-4 text-blueGray-500 text-lg leading-relaxed'>
+                    I always felt like I could do anything. That’s the main
+                    thing people are controlled by!
+                    </p>
+                  </div>
+                  {/* footer*/}
+                  <button
+                      className='bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
+                      type='button'
+                      onClick={() => setShowModal(false)}
+                    >
+                    download
+                    </button>
+                  <div className='flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b'>
+                    <button
+                      className='text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
+                      type='button'
+                      onClick={() => setShowModal(false)}
+                    >
+                    Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className='opacity-25 fixed inset-0 z-40 bg-black' />
+          </>
+          : null}
+        <div className='block w-full overflow-x-auto'>
+          {/* Projects table */}
+          <table className='items-center w-full bg-transparent border-collapse'>
+            <TableHead attrs={headattr} />
+            <TableBody attrs={headattr} items={PublicData} onShowModal={handleShowModal} />
+          </table>
+          <div className='m-4'>
+            <Pagination />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
 
 const TableHeaderComponent = (props) => {
   const {attr, color} = props;
@@ -94,9 +191,7 @@ const TableHead = (props) => {
 };
 
 const TableBodyComponent = (props) => {
-  const {show} = props;
-  const [showModal, setShowModal] = React.useState(show);
-  const {item, attr, color} = props;
+  const {item, attr, color, onShowModal} = props;
 
   if (attr === 'name') {
     return (
@@ -149,7 +244,7 @@ const TableBodyComponent = (props) => {
           <button
             className='bg-pink-500 text-white active:bg-pink-600 uppercase text-sm px-4 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none m-1 ease-linear transition-all duration-150'
             type='button'
-            onClick={() => setShowModal(true)}
+            onClick={() => onShowModal(true)}
           >
           더보기
           </button>
@@ -160,115 +255,23 @@ const TableBodyComponent = (props) => {
 };
 
 const TableRow = (props) => {
-  const {item, attrs, show} = props;
+  const {item, attrs, onShowModal} = props;
   return (
     <tr>
-      {attrs.map((attr, idx) => <TableBodyComponent show = {show} key={`tbody2-${idx}`} item={item} attr={attr} />)}
+      {attrs.map((attr, idx) => <TableBodyComponent onShowModal = {onShowModal} key={`tbody2-${idx}`} item={item} attr={attr} />)}
     </tr>
   );
 };
 
 const TableBody = (props) => {
-  const {items, attrs, show} = props;
+  const {items, attrs, onShowModal} = props;
   return (
     <tbody>
-      {items.map((item, idx) => <TableRow show = {show} key={`tbody-${idx}`} item={item} attrs={attrs} />)}
+      {items.map((item, idx) => <TableRow onShowModal = {onShowModal} key={`tbody-${idx}`} item={item} attrs={attrs} />)}
     </tbody>
   );
 };
 
-export default function DataTable({color}) {
-  const [showModal, setShowModal] = React.useState(false);
-
-  return (
-    <>
-      <div
-        className={
-          'relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded ' +
-          (color === 'light' ? 'bg-white' : 'bg-lightBlue-900 text-white')
-        }
-      >
-        <div className='rounded-t mb-0 px-4 py-3 border-0'>
-          <div className='flex flex-wrap items-center'>
-            <div className='relative w-full px-4 max-w-full flex-grow flex-1'>
-              <h3
-                className={
-                  'font-semibold text-lg ' +
-                  (color === 'light' ? 'text-blueGray-700' : 'text-white')
-                }
-              >
-                공공데이터
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div className='block w-full overflow-x-auto'>
-          {/* Projects table */}
-          <table className='items-center w-full bg-transparent border-collapse'>
-            <TableHead attrs={headattr} />
-            <TableBody attrs={headattr} items={PublicData} show={showModal} />
-          </table>
-          <div className='m-4'>
-            <Pagination />
-          </div>
-        </div>
-      </div>
-      {showModal ?
-        <>
-          <div
-            className='justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none'
-            onClick={() => setShowModal(false)}
-          >
-            <div className='relative w-auto my-6 mx-auto max-w-sm'>
-              {/* content*/}
-              <div className='border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
-                {/* header*/}
-                <div className='flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t'>
-                  <h3 className='text-3xl font-semibold'>
-                    Modal Title
-                  </h3>
-                  <button
-                    className='p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
-                    onClick={() => setShowModal(false)}
-                  >
-                    <span className='bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none'>
-                      ×
-                    </span>
-                  </button>
-                </div>
-                {/* body*/}
-                <div className='relative p-6 flex-auto'>
-                  <p className='my-4 text-blueGray-500 text-lg leading-relaxed'>
-                    I always felt like I could do anything. That’s the main
-                    thing people are controlled by!
-                  </p>
-                </div>
-                {/* footer*/}
-                <div className='flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b'>
-                  <button
-                    className='text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
-                    type='button'
-                    onClick={() => setShowModal(false)}
-                  >
-                    Close
-                  </button>
-                  <button
-                    className='bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
-                    type='button'
-                    onClick={() => setShowModal(false)}
-                  >
-                    Save Changes
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='opacity-25 fixed inset-0 z-40 bg-black' />
-        </>
-        : null}
-    </>
-  );
-}
 
 DataTable.defaultProps = {
   color: 'light'
