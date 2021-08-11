@@ -165,7 +165,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  토큰 충전
+                  토큰 거래
                 </Link>
               </li>
             </ul>
