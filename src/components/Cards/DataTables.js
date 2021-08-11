@@ -1,16 +1,33 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import PublicData from '../data/PublicData.js';
-import {Pagination} from 'components/Pagination/Pagination.js';
-// import Modal from 'components/Modals/Modal.js';
+import {Pagination} from '../Pagination/Pagination.js';
+import {paginate} from '../Pagination/Pagenate.js';
 
 const headattr = ['name', 'desc', 'download', 'org', 'date', 'add'];
 
 export default function DataTable({color}) {
   const [showModal, setShowModal] = useState(false);
+  const [datas, setDatas] = useState({
+    data: PublicData,
+    pageSize: 5,
+    currentPage: 1
+  });
+
+  const handlePageChange = (page) => {
+    setDatas({...datas, currentPage: page});
+  };
+
+  const {data, pageSize, currentPage} = datas;
+  const pagedDates = paginate(data, currentPage, pageSize);
+
+  const {length: count} = datas.data;
+  if (count === 0) {
+    return <p>공공 데이터 정보가 없습니다.</p>;
+  }
+
   const handleShowModal = (flag) => {
     setShowModal(flag);
-    console.log('hihi');
   };
   return (
     <>
@@ -60,18 +77,6 @@ export default function DataTable({color}) {
                   </div>
                   {/* body*/}
                   <div className='relative p-6 flex-auto'>
-                    <p className='inline-block m-2 border-2 border-emerald-500'>
-                    확장자 
-                    </p>
-                    <p className='inline-block p-2'>
-                    분류체계
-                    </p>
-                    <p className='inline-block p-2'>
-                    부서명 
-                    </p>
-                    <p className='inline-block p-2'>
-                    부서명 전화번호 
-                    </p>
                     <p className='my-4 text-blueGray-500 text-lg leading-relaxed'>
                     I always felt like I could do anything. That’s the main
                     thing people are controlled by!
@@ -79,12 +84,12 @@ export default function DataTable({color}) {
                   </div>
                   {/* footer*/}
                   <button
-                      className='bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
-                      type='button'
-                      onClick={() => setShowModal(false)}
-                    >
+                    className='bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
+                    type='button'
+                    onClick={() => setShowModal(false)}
+                  >
                     download
-                    </button>
+                  </button>
                   <div className='flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b'>
                     <button
                       className='text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
@@ -104,10 +109,15 @@ export default function DataTable({color}) {
           {/* Projects table */}
           <table className='items-center w-full bg-transparent border-collapse'>
             <TableHead attrs={headattr} />
-            <TableBody attrs={headattr} items={PublicData} onShowModal={handleShowModal} />
+            <TableBody attrs={headattr} items={pagedDates} onShowModal={handleShowModal} />
           </table>
           <div className='m-4'>
-            <Pagination />
+            <Pagination
+              itemsCount={count}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
           </div>
         </div>
       </div>
