@@ -5,7 +5,7 @@ import {Pagination} from 'components/Pagination/Pagination.js';
 // components
 
 
-const headattr = ['name', 'price', 'download', 'producer', 'date','add'];
+const headattr = ['name', 'price', 'download', 'producer', 'date', 'add'];
 
 export default function AITable({color}) {
   const [showModal, setShowModal] = useState(false);
