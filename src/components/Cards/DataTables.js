@@ -55,7 +55,7 @@ export default function DataTable({color}) {
           <>
             <div
               className='justify-center items-center flex overflow-x-hidden overflow-y-auto inset-0 z-50 outline-none absolute focus:outline-none'
-              style={{top: '20%', left: '30%', transform: 'translate( - 50 % ,  - 50 % )'}}
+              style={{top: '2%', left: '20%', transform: 'translate( - 50 % ,  - 50 % )'}}
               onClick={() => setShowModal(false)}
             >
               <div className='relative w-auto my-6 mx-auto max-w-sm'>
@@ -93,14 +93,14 @@ export default function DataTable({color}) {
                     설명: I always felt like I could do anything. That’s the main
                     thing people are controlled by!
                     </p>
-                    <div className='border-0 box-border justify-item-center'>
+                    <div className='border-0 box-border flex justify-center '>
                       <button
-                        className='bg-emerald-500 m-4 text-white w-screen active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150'
+                        className='bg-emerald-500 justify-self-center m-4 text-white w-full active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150'
                         type='button'
                         onClick={() => setShowModal(false)}
                       >
                     download
-                    </button>
+                      </button>
                     </div>
                   </div>
                 </div>
