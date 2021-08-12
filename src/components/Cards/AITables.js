@@ -4,7 +4,7 @@ import AIData from 'components/data/AIData';
 import {Pagination} from '../Pagination/Pagination.js';
 import {paginate} from '../Pagination/Pagenate.js';
 
-const headattr = ['name', 'price', 'download', 'producer', 'date', 'add'];
+const headattr = ['num', 'name', 'price', 'download', 'producer', 'date', 'add'];
 
 export default function AITable({color}) {
   const [showModal, setShowModal] = useState(false);
@@ -13,6 +13,13 @@ export default function AITable({color}) {
     data: AIData,
     pageSize: 5,
     currentPage: 1
+  });
+
+  const [modalDatas, setModalDatas] = useState({
+    title: '',
+    language: '',
+    performance: '',
+    description: ''
   });
 
   const handlePageChange = (page) => {
@@ -26,8 +33,9 @@ export default function AITable({color}) {
   if (count === 0) {
     return <p>공공 데이터 정보가 없습니다.</p>;
   }
-  const handleShowModal = (flag) => {
-    setShowModal(flag);
+  const handleShowModal = (items) => {
+    setModalDatas({title: items.name, language: items.language, performance: items.performance, description: items.description});
+    setShowModal(true);
   };
   return (
     <>
@@ -63,9 +71,9 @@ export default function AITable({color}) {
                 <div className='border-2 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
                   {/* header*/}
                   <div className='flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t'>
-                    <h3 className='text-3xl font-semibold'>
-                    Modal Title
-                    </h3>
+                    <h5 className='text-3xl font-semibold'>
+                      {modalDatas.title}
+                    </h5>
                     <button
                       className='p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
                       onClick={() => setShowModal(false)}
@@ -78,14 +86,13 @@ export default function AITable({color}) {
                   {/* body*/}
                   <div className='relative p-6 flex-auto'>
                     <p className='m-4'>
-                    언어:
+                    언어: {modalDatas.language}
                     </p>
                     <p className='m-4'>
-                    성능:
+                    성능: {modalDatas.performance}
                     </p>
                     <p className='m-4 text-blueGray-500 text-lg leading-relaxed'>
-                    설명: I always felt like I could do anything. That’s the main
-                    thing people are controlled by!
+                    설명: {modalDatas.description}
                     </p>
                   </div>
                   {/* footer*/}
@@ -125,7 +132,19 @@ export default function AITable({color}) {
 
 const TableHeaderComponent = (props) => {
   const {attr, color} = props;
-  if (attr === 'name') {
+  if (attr === 'num') {
+    return (
+      <th
+        className={
+          'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
+          (color === 'light'
+            ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+            : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
+        }
+      > #
+      </th>
+    );
+  } else if (attr === 'name') {
     return (
       <th
         className={
@@ -194,7 +213,7 @@ const TableHeaderComponent = (props) => {
             ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
             : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
         }
-      > 날짜
+      > 더보기
       </th>
     );
   }
@@ -212,7 +231,7 @@ const TableHead = (props) => {
 
 const TableBodyComponent = (props) => {
   const {item, attr, color, onShowModal} = props;
-  if (attr === 'name') {
+  if (attr === 'num') {
     return (
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center'>
         <span
@@ -223,6 +242,12 @@ const TableBodyComponent = (props) => {
         >
           {item[attr]}
         </span>
+      </td>
+    );
+  } else if (attr === 'name') {
+    return (
+      <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
+        {item[attr]}
       </td>
     );
   } else if (attr === 'price') {
@@ -261,7 +286,7 @@ const TableBodyComponent = (props) => {
           <button
             className='bg-pink-500 text-white active:bg-pink-600 uppercase text-sm px-4 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none m-1 ease-linear transition-all duration-150'
             type='button'
-            onClick={() => onShowModal(true)}
+            onClick={() => onShowModal(item)}
           >
           더보기
           </button>
@@ -275,7 +300,7 @@ const TableRow = (props) => {
   const {item, attrs, onShowModal} = props;
   return (
     <tr>
-      {attrs.map((attr, idx) => <TableBodyComponent onShowModal = {onShowModal} key={`tbody2-${idx}`} item={item} attr={attr} />)}
+      {attrs.map((attr, idx) => <TableBodyComponent onShowModal = {onShowModal} key={`tbody2-${idx}`} item={item} attr={attr}/>)}
     </tr>
   );
 };
