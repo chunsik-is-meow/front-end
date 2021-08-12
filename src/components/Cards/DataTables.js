@@ -8,10 +8,20 @@ const headattr = ['name', 'desc', 'download', 'org', 'date', 'add'];
 
 export default function DataTable({color}) {
   const [showModal, setShowModal] = useState(false);
+
   const [datas, setDatas] = useState({
     data: PublicData,
     pageSize: 5,
     currentPage: 1
+  });
+
+  const [modalDatas, setModalDatas] = useState({
+    title: '',
+    extensions: '',
+    classification: '',
+    department: '',
+    contact: '',
+    description: ''
   });
 
   const handlePageChange = (page) => {
@@ -26,9 +36,11 @@ export default function DataTable({color}) {
     return <p>공공 데이터 정보가 없습니다.</p>;
   }
 
-  const handleShowModal = (flag) => {
-    setShowModal(flag);
+  const handleShowModal = (items) => {
+    setModalDatas({title: items.name, extensions: items.extensions, classification: items.classification, department: items.department, contact: items.contact, description: items.description});
+    setShowModal(true);
   };
+
   return (
     <>
       <div
@@ -63,9 +75,9 @@ export default function DataTable({color}) {
                 <div className='border-2 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
                   {/* header*/}
                   <div className='flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t'>
-                    <h3 className='text-3xl font-semibold'>
-                    Modal Title
-                    </h3>
+                    <h5 className='text-3xl font-semibold'>
+                      {modalDatas.title}
+                    </h5>
                     <button
                       className='p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
                       onClick={() => setShowModal(false)}
@@ -78,20 +90,19 @@ export default function DataTable({color}) {
                   {/* body*/}
                   <div className='relative p-6 flex-auto'>
                     <p className=' m-4'>
-                    확장자:
+                    확장자: {modalDatas.extensions}
                     </p>
                     <p className='m-4'>
-                    분류체계:
+                    분류체계: {modalDatas.classification}
                     </p>
                     <p className='m-4'>
-                    부서명:
+                    부서명: {modalDatas.department}
                     </p>
                     <p className='m-4'>
-                    부서 전화번호:
+                    부서 전화번호: {modalDatas.contact}
                     </p>
                     <p className='m-4 text-blueGray-500 text-lg leading-relaxed'>
-                    설명: I always felt like I could do anything. That’s the main
-                    thing people are controlled by!
+                    설명: {modalDatas.description}
                     </p>
                     <div className='border-0 box-border flex justify-center '>
                       <button
@@ -270,7 +281,7 @@ const TableBodyComponent = (props) => {
           <button
             className='bg-pink-500 text-white active:bg-pink-600 uppercase text-sm px-4 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none m-1 ease-linear transition-all duration-150'
             type='button'
-            onClick={() => onShowModal(true)}
+            onClick={() => onShowModal(item)}
           >
           더보기
           </button>
