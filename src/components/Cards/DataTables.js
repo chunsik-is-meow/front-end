@@ -67,7 +67,7 @@ export default function DataTable({color}) {
           <>
             <div
               className='justify-center items-center flex overflow-x-hidden overflow-y-auto inset-0 z-50 outline-none absolute focus:outline-none'
-              style={{top: '2%', left: '20%', transform: 'translate( - 50 % ,  - 50 % )'}}
+              style={{top: '2%', left: '20%', transform: 'translate( - 50 % ,  - 50 % )', width: '300px', height: '500px'}}
               onClick={() => setShowModal(false)}
             >
               <div className='relative w-auto my-6 mx-auto max-w-sm'>
