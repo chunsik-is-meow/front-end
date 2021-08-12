@@ -16,7 +16,7 @@ export const Pagination = (props) => {
       <nav className='block'>
         <ul className='flex pl-0 rounded list-none flex-wrap'>
           {pages.map(page =>
-            <li key={page} style={{cursor: 'pointer'}}>
+            <li key={page} style={{cursor: 'pointer'}} className='m-1'>
               <a href='#pablo' onClick={() => onPageChange(page)} className={page === currentPage ?
                 'bg-lightBlue-500 first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-lightBlue-500 text-white'
                 : ' text-lightBlue-500 first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-lightBlue-500 text-white'}

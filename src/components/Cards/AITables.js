@@ -1,17 +1,33 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import AIData from 'components/data/AIData';
-import {Pagination} from 'components/Pagination/Pagination.js';
-// components
-
+import {Pagination} from '../Pagination/Pagination.js';
+import {paginate} from '../Pagination/Pagenate.js';
 
 const headattr = ['name', 'price', 'download', 'producer', 'date', 'add'];
 
 export default function AITable({color}) {
   const [showModal, setShowModal] = useState(false);
+
+  const [datas, setDatas] = useState({
+    data: AIData,
+    pageSize: 5,
+    currentPage: 1
+  });
+
+  const handlePageChange = (page) => {
+    setDatas({...datas, currentPage: page});
+  };
+
+  const {data, pageSize, currentPage} = datas;
+  const pagedDates = paginate(data, currentPage, pageSize);
+
+  const {length: count} = datas.data;
+  if (count === 0) {
+    return <p>공공 데이터 정보가 없습니다.</p>;
+  }
   const handleShowModal = (flag) => {
     setShowModal(flag);
-    console.log('hihi');
   };
   return (
     <>
@@ -90,10 +106,15 @@ export default function AITable({color}) {
           {/* Projects table */}
           <table className='items-center w-full bg-transparent border-collapse'>
             <TableHead attrs={headattr}/>
-            <TableBody attrs={headattr} items={AIData} onShowModal={handleShowModal} />
+            <TableBody attrs={headattr} items={pagedDates} onShowModal={handleShowModal} />
           </table>
           <div className='m-4'>
-            <Pagination/>
+            <Pagination
+              itemsCount={count}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
           </div>
         </div>
       </div>
