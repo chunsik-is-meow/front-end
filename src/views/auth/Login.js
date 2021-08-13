@@ -1,7 +1,35 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import AuthService from '../../services/auth.service';
 
 export default function Login() {
+  const [userID, setUserID] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onChangeUserID = (e) => {
+    const userID = e.target.value;
+    setUserID(userID);
+  };
+
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const isLogin = await AuthService.login(userID, password);
+      if(isLogin) {
+        window.location.href = "/admin/dashboard";
+      }
+      else {
+        alert('아이디, 비밀번호를 확인해주세요.');
+      }
+    } catch (error) {
+    }
+  };
+
   return (
     <>
       <div className='container mx-auto px-4 h-full'>
@@ -44,18 +72,19 @@ export default function Login() {
                 <div className='text-blueGray-400 text-center mb-3 font-bold'>
                   <small>Or sign in with credentials</small>
                 </div>
-                <form>
+                <form action={handleLogin}>
                   <div className='relative w-full mb-3'>
                     <label
                       className='block uppercase text-blueGray-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
-                      Email
+                      ID
                     </label>
                     <input
-                      type='email'
+                      type='text'
                       className='border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150'
-                      placeholder='Email'
+                      placeholder='ID'
+                      onChange={onChangeUserID}
                     />
                   </div>
 
@@ -70,6 +99,7 @@ export default function Login() {
                       type='password'
                       className='border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150'
                       placeholder='Password'
+                      onChange={onChangePassword}
                     />
                   </div>
                   <div>
@@ -88,9 +118,9 @@ export default function Login() {
                   <div className='text-center mt-6'>
                     <button
                       className='bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150'
-                      type='button'
+                      type='submit'
                     >
-                      Sign In
+                      LogIn
                     </button>
                   </div>
                 </form>

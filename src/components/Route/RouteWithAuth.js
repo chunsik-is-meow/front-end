@@ -1,5 +1,6 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
+// import AuthService from 'services/auth.service';
 
 const RouteWithAuth = ({component: Component, ...rest}) => {
   // const isValidToken = AuthService.isValidToken();
