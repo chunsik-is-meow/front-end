@@ -24,7 +24,7 @@ export default function Sidebar() {
             className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-2xl uppercase font-bold p-4 px-0"
             to="/"
           >
-           MOT 
+            MOT
           </Link>
           <h3 className="text-xs">Model Of ai and public data Trade</h3>
           {/* User */}
@@ -91,15 +91,19 @@ export default function Sidebar() {
                   }
                   to="/admin/dashboard"
                 >
-                  <i
-                    className={
-                      "fas fa-tv mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/dashboard") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  dashboard
+                  <div className='w-8 inline-block '>
+                    <i
+                      className={
+                        "fas fa-tv mr-2 text-sm " +
+                        (window.location.href.indexOf("/admin/dashboard") !== -1
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    ></i>{" "}
+                  </div >
+                  <div className='inline-block'>
+                    dashboard
+                  </div>
                 </Link>
               </li>
 
@@ -113,6 +117,7 @@ export default function Sidebar() {
                   }
                   to="/user/data"
                 >
+                  <div className='w-8 inline-block content-center '>
                   <i
                     className={
                       "fas fa-database mr-2 text-sm " +
@@ -121,7 +126,10 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
+                  </div>
+                  <div className='inline-block'>
                   공공 데이터
+                  </div>
                 </Link>
               </li>
 
@@ -135,6 +143,7 @@ export default function Sidebar() {
                   }
                   to="/user/aimodel"
                 >
+                  <div className='w-8 inline-block justify-center '>
                   <i
                     className={
                       "fas fa-store mr-2 text-sm " +
@@ -143,7 +152,10 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
+                  </div>
+                  <div className='inline-block'>
                   인공지능 모델
+                  </div>
                 </Link>
               </li>
 
@@ -157,6 +169,7 @@ export default function Sidebar() {
                   }
                   to="/user/token"
                 >
+                  <div className='w-8 inline-block'>
                   <i
                     className={
                       "fas fa-donate mr-2 text-sm " +
@@ -165,7 +178,10 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
+                  </div>
+                  <div className='inline-block'>
                   토큰 거래
+                  </div>
                 </Link>
               </li>
             </ul>
@@ -190,6 +206,7 @@ export default function Sidebar() {
                   }
                   to="/user/mypage"
                 >
+                  <div className='w-8 inline-block '>
                   <i
                     className={
                       "far fa-address-book mr-2 text-sm " +
@@ -198,7 +215,10 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
+                  </div>
+                  <div className='inline-block'>
                   마이페이지
+                  </div>
                 </Link>
               </li>
               <li className="items-center">
@@ -211,6 +231,7 @@ export default function Sidebar() {
                   }
                   to="/user/transaction"
                 >
+                  <div className='w-8 inline-block ' >
                   <i
                     className={
                       "fas fa-shopping-bag mr-2 text-sm " +
@@ -219,7 +240,10 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
+                  </div>
+                  <div className='inline-block'>
                   거래내역
+                  </div>
                 </Link>
               </li>
             </ul>

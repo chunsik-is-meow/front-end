@@ -57,17 +57,23 @@ const UserDropdown = () => {
           로그아웃
         </a>
         <Link
-          to='/user/Token'
+          to='/user/token'
           className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
+            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700' +
+            (window.location.href.indexOf('/user/token') !== -1
+              ? 'text-lightBlue-500 hover:text-lightBlue-600'
+              : 'text-blueGray-700 hover:text-blueGray-500')
           }
         >
           토큰 거래
         </Link>
         <Link
-          to='/user/Mypage'
+          to='/user/mypage'
           className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
+            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700' +
+            (window.location.href.indexOf('/user/mypage') !== -1
+              ? 'opacity-75'
+              : 'text-blueGray-300')
           }
         >
           마이페이지
