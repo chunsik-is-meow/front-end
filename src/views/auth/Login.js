@@ -3,27 +3,26 @@ import {Link} from 'react-router-dom';
 import AuthService from '../../services/auth.service';
 
 export default function Login() {
-  const [userID, setUserID] = useState("");
-  const [password, setPassword] = useState("");
+  const [userID, setUserID] = useState('');
+  const [password, setPassword] = useState('');
 
   const onChangeUserID = (e) => {
-    const userID = e.target.value;
-    setUserID(userID);
+    const id = e.target.value;
+    setUserID(id);
   };
 
   const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
+    const pw = e.target.value;
+    setPassword(pw);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const isLogin = await AuthService.login(userID, password);
-      if(isLogin) {
-        window.location.href = "/admin/dashboard";
-      }
-      else {
+      if (isLogin) {
+        window.location.href = '/admin/dashboard';
+      } else {
         alert('아이디, 비밀번호를 확인해주세요.');
       }
     } catch (error) {

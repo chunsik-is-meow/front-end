@@ -26,7 +26,6 @@ module.exports = {
     "no-dupe-args": 2, // disallow duplicate arguments in functions
     "no-dupe-keys": 2, // disallow duplicate keys when creating object literals
     "no-duplicate-case": 2, // disallow a duplicate case label.
-    "no-empty": 2, // disallow empty statements
     "no-empty-character-class": 2, // disallow the use of empty character classes in regular expressions
     "no-ex-assign": 2, // disallow assigning to the exception in a catch block
     "no-extra-boolean-cast": 2, // disallow double-negation boolean casts in a boolean context
@@ -59,7 +58,6 @@ module.exports = {
     "default-case": 2, // require default case in switch statements (off by default)
     "eqeqeq": 2, // require the use of === and !==
     "guard-for-in": 2, // make sure for-in loops have an if statement (off by default)
-    "no-alert": 2, // disallow the use of alert, confirm, and prompt
     "no-caller": 2, // disallow use of arguments.caller or arguments.callee
     "no-div-regex": 2, // disallow division operators explicitly at beginning of regular expression (off by default)
     "no-labels": "error", // disallow use of labels for anything other then loops and switches
@@ -119,8 +117,6 @@ module.exports = {
     "no-undef-init": 2, // disallow use of undefined when initializing variables
     "no-undefined": 2, // disallow use of undefined variable (off by default)
     // "no-unused-vars": 2, // disallow declaration of variables that are not used in the code
-    "no-use-before-define": 2, // disallow use of variables before they are defined
-
     //
     //Stylistic Issues
     //

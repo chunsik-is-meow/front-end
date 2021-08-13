@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TransactionData from 'components/data/TransactionData';
+import TransactionData from 'components/Data/TransactionData';
 import {Pagination} from 'components/Pagination/Pagination.js';
 
 // components

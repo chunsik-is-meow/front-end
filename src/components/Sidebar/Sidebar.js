@@ -24,9 +24,12 @@ export default function Sidebar() {
             className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-2xl uppercase font-bold p-4 px-0"
             to="/"
           >
-            MOT
+            <img
+              alt='...'
+              className='w-full align-middle border-none'
+              src={require('images/logo_mot.png').default}
+            />
           </Link>
-          <h3 className="text-xs">Model Of ai and public data Trade</h3>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
