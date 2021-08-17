@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import PublicData from '../Data/PublicData.js';
+import PublicData from 'components/Data/PublicData.js';
 import {Pagination} from '../Pagination/Pagination.js';
 import {paginate} from '../Pagination/Pagenate.js';
 
-const headattr = ['name', 'desc', 'download', 'org', 'date', 'add'];
+const headattr = ['num', 'name', 'desc', 'download', 'org', 'date', 'add'];
 
 export default function DataTable({color}) {
   const [showModal, setShowModal] = useState(false);
@@ -12,6 +12,15 @@ export default function DataTable({color}) {
     data: PublicData,
     pageSize: 5,
     currentPage: 1
+  });
+
+  const [modalDatas, setModalDatas] = useState({
+    title: '',
+    extensions: '',
+    classification: '',
+    department: '',
+    contact: '',
+    description: ''
   });
 
   const handlePageChange = (page) => {
@@ -26,8 +35,9 @@ export default function DataTable({color}) {
     return <p>공공 데이터 정보가 없습니다.</p>;
   }
 
-  const handleShowModal = (flag) => {
-    setShowModal(flag);
+  const handleShowModal = (items) => {
+    setModalDatas({title: items.name, extensions: items.extensions, classification: items.classification, department: items.department, contact: items.contact, description: items.description});
+    setShowModal(true);
   };
   return (
     <>
@@ -58,13 +68,14 @@ export default function DataTable({color}) {
               style={{top: '2%', left: '20%', transform: 'translate( - 50 % ,  - 50 % )'}}
               onClick={() => setShowModal(false)}
             >
-              <div className='relative w-auto my-6 mx-auto max-w-sm'>
+              <div className='relative my-6 mx-auto max-w-sm'
+                style={{width: '330pt'}}>
                 {/* content*/}
                 <div className='border-2 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
                   {/* header*/}
                   <div className='flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t'>
                     <h3 className='text-3xl font-semibold'>
-                    Modal Title
+                      {modalDatas.title}
                     </h3>
                     <button
                       className='p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
@@ -78,20 +89,19 @@ export default function DataTable({color}) {
                   {/* body*/}
                   <div className='relative p-6 flex-auto'>
                     <p className=' m-4'>
-                    확장자:
+                    확장자: {modalDatas.extensions}
                     </p>
                     <p className='m-4'>
-                    분류체계:
+                    분류체계:{modalDatas.classification}
                     </p>
                     <p className='m-4'>
-                    부서명:
+                    부서명: {modalDatas.department}
                     </p>
                     <p className='m-4'>
-                    부서 전화번호:
+                    부서 전화번호: {modalDatas.contact}
                     </p>
                     <p className='m-4 text-blueGray-500 text-lg leading-relaxed'>
-                    설명: I always felt like I could do anything. That’s the main
-                    thing people are controlled by!
+                    설명: {modalDatas.description}
                     </p>
                     <div className='border-0 box-border flex justify-center'>
                       <button
@@ -131,7 +141,19 @@ export default function DataTable({color}) {
 
 const TableHeaderComponent = (props) => {
   const {attr, color} = props;
-  if (attr === 'name') {
+  if (attr === 'num') {
+    return (
+      <th
+        className={
+          'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
+          (color === 'light'
+            ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
+            : 'bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700')
+        }
+      > #
+      </th>
+    );
+  } else if (attr === 'name') {
     return (
       <th
         className={
@@ -219,7 +241,7 @@ const TableHead = (props) => {
 const TableBodyComponent = (props) => {
   const {item, attr, color, onShowModal} = props;
 
-  if (attr === 'name') {
+  if (attr === 'num') {
     return (
       <>
         <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center'>
@@ -233,6 +255,12 @@ const TableBodyComponent = (props) => {
           </span>
         </td>
       </>
+    );
+  } else if (attr === 'name') {
+    return (
+      <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
+        {item[attr]}
+      </td>
     );
   } else if (attr === 'desc') {
     return (
@@ -270,7 +298,7 @@ const TableBodyComponent = (props) => {
           <button
             className='bg-pink-500 text-white active:bg-pink-600 uppercase text-sm px-4 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none m-1 ease-linear transition-all duration-150'
             type='button'
-            onClick={() => onShowModal(true)}
+            onClick={() => onShowModal(item)}
           >
           더보기
           </button>

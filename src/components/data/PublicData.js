@@ -1,5 +1,6 @@
 export default [
   {
+    num: 1,
     name: '전력데이터',
     desc: 'test',
     download: '1209',
@@ -12,6 +13,7 @@ export default [
     description: 'test description'
   },
   {
+    num: 2,
     name: '태양열 사용',
     desc: 'test',
     download: '1209',
@@ -24,6 +26,7 @@ export default [
     description: 'test description'
   },
   {
+    num: 3,
     name: '자판기 개수',
     desc: 'test',
     download: '1209',
@@ -36,6 +39,7 @@ export default [
     description: 'test description'
   },
   {
+    num: 4,
     name: '코로나 확진자 분포도',
     desc: 'test',
     download: '1209',
@@ -48,6 +52,7 @@ export default [
     description: 'test description'
   },
   {
+    num: 5,
     name: '부산 금정구 미세먼지 측정',
     desc: 'test',
     download: '1209',
@@ -60,6 +65,7 @@ export default [
     description: 'test description'
   },
   {
+    num: 6,
     name: '부산 금정구 평균 기온',
     desc: 'test',
     download: '1209',

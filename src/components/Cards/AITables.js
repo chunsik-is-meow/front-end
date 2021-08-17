@@ -63,17 +63,18 @@ export default function AITable({color}) {
           <>
             <div
               className='justify-center items-center flex overflow-x-hidden overflow-y-auto inset-0 z-50 outline-none absolute focus:outline-none'
-              style={{top: '20%', left: '30%', transform: 'translate( - 50 % ,  - 50 % )'}}
+              style={{top: '2%', left: '20%', transform: 'translate( - 50 % ,  - 50 % )'}}
               onClick={() => setShowModal(false)}
             >
-              <div className='relative w-auto my-6 mx-auto max-w-sm'>
+              <div className='relative my-6 mx-auto max-w-sm'
+                style={{width: '330pt'}}>
                 {/* content*/}
                 <div className='border-2 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
                   {/* header*/}
                   <div className='flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t'>
-                    <h5 className='text-3xl font-semibold'>
+                    <h3 className='text-3xl font-semibold'>
                       {modalDatas.title}
-                    </h5>
+                    </h3>
                     <button
                       className='p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
                       onClick={() => setShowModal(false)}
@@ -85,24 +86,25 @@ export default function AITable({color}) {
                   </div>
                   {/* body*/}
                   <div className='relative p-6 flex-auto'>
-                    <p className='m-4'>
+                    <p className=' m-4'>
                     언어: {modalDatas.language}
                     </p>
                     <p className='m-4'>
-                    성능: {modalDatas.performance}
+                    성능:{modalDatas.performance}
                     </p>
                     <p className='m-4 text-blueGray-500 text-lg leading-relaxed'>
                     설명: {modalDatas.description}
                     </p>
-                  </div>
-                  {/* footer*/}
-                  <button
-                    className='bg-emerald-500 mb-4 mx-4 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
-                    type='button'
-                    onClick={() => setShowModal(false)}
-                  >
+                    <div className='border-0 box-border flex justify-center'>
+                      <button
+                        className='bg-emerald-500 justify-self-center m-4 text-white w-full active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150'
+                        type='button'
+                        onClick={() => setShowModal(false)}
+                      >
                     download
-                  </button>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
