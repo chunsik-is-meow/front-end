@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import AuthService from '../../services/auth.service';
 
@@ -34,7 +34,7 @@ export default function Login() {
       <div className='container mx-auto px-4 h-full'>
         <div className='flex content-center items-center justify-center h-full'>
           <div className='w-full lg:w-4/12 px-4'>
-            <div className='relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0'>
+            <div className='relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0'>
               <div className='rounded-t mb-0 px-6 py-6'>
                 <div className='text-center mb-3'>
                   <h6 className='text-blueGray-500 text-sm font-bold'>
@@ -130,14 +130,14 @@ export default function Login() {
                 <a
                   href='#pablo'
                   onClick={(e) => e.preventDefault()}
-                  className='text-blueGray-200'
+                  className='text-white text-lg'
                 >
-                  <small>Forgot password?</small>
+                 Forgot password?
                 </a>
               </div>
               <div className='w-1/2 text-right'>
-                <Link to='/auth/register' className='text-blueGray-200'>
-                  <small>Create new account</small>
+                <Link to='/auth/register' className='text-white text-lg'>
+                  Create new account
                 </Link>
               </div>
             </div>
