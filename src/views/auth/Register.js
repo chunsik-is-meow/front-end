@@ -5,6 +5,8 @@ export default function Register() {
   const [userName, setUserName] = useState('');
   const [userEmail, setUSerEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [userAccount, setUserAccount] = useState('');
 
   const onChangeUserName = (e) => {
     const name = e.target.value;
@@ -21,10 +23,20 @@ export default function Register() {
     setPassword(pw);
   };
 
+  const onChangePhoneNumber = (e) => {
+    const phone = e.target.value;
+    setPhoneNumber(phone);
+  };
+
+  const onChangeAccount = (e) => {
+    const account = e.target.value;
+    setUserAccount(account);
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const isRegister = await AuthService.register(userName, userEmail, password);
+      const isRegister = await AuthService.register(userName, userEmail, password, phoneNumber, userAccount);
       if (isRegister) {
         // TODO change dashboard url
         window.location.href = '/auth/login';
@@ -83,7 +95,7 @@ export default function Register() {
                       className='block uppercase text-blueGray-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
-                      Name
+                      이름
                     </label>
                     <input
                       type='text'
@@ -113,6 +125,21 @@ export default function Register() {
                       className='block uppercase text-blueGray-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
+                      연락처
+                    </label>
+                    <input
+                      type='text'
+                      className='border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150'
+                      placeholder='010-1234-5678'
+                      onChange={onChangePhoneNumber}
+                    />
+                  </div>
+
+                  <div className='relative w-full mb-3'>
+                    <label
+                      className='block uppercase text-blueGray-600 text-xs font-bold mb-2'
+                      htmlFor='grid-password'
+                    >
                       Password
                     </label>
                     <input
@@ -120,6 +147,21 @@ export default function Register() {
                       className='border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150'
                       placeholder='Password'
                       onChange={onChangePassword}
+                    />
+                  </div>
+
+                  <div className='relative w-full mb-3'>
+                    <label
+                      className='block uppercase text-blueGray-600 text-xs font-bold mb-2'
+                      htmlFor='grid-password'
+                    >
+                      계좌번호
+                    </label>
+                    <input
+                      type='text'
+                      className='border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150'
+                      placeholder='춘식은행 3314-4567-77541'
+                      onChange={onChangeAccount}
                     />
                   </div>
 
