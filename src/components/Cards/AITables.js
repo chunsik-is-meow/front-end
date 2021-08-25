@@ -101,7 +101,7 @@ export default function AITable({color}) {
                         type='button'
                         onClick={() => setShowModal(false)}
                       >
-                    download
+                    구매하기
                       </button>
                     </div>
                   </div>
