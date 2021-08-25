@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TransactionData from 'components/Data/TransactionData';
+import TransService from '../../services/transaction.service';
 import {Pagination} from 'components/Pagination/Pagination.js';
 
 // components
@@ -154,7 +154,7 @@ export default function MyPageTable({color}) {
           {/* Projects table */}
           <table className='items-center w-full bg-transparent border-collapse'>
             <TableHead attrs={headattr} />
-            <TableBody attrs={headattr} items={TransactionData} />
+            <TableBody attrs={headattr} items={TransService.GetTransData()} />
           </table>
           <div className='m-4'>
             <Pagination />

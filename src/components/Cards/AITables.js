@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import AIData from 'components/Data/AIData';
+import AIService from '../../services/ai.service';
 import {Pagination} from '../Pagination/Pagination.js';
 import {paginate} from '../Pagination/Pagenate.js';
 
@@ -10,7 +10,7 @@ export default function AITable({color}) {
   const [showModal, setShowModal] = useState(false);
 
   const [datas, setDatas] = useState({
-    data: AIData,
+    data: AIService.GetAIData(),
     pageSize: 5,
     currentPage: 1
   });

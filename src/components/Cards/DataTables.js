@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import PublicData from 'components/Data/PublicData.js';
 import {Pagination} from '../Pagination/Pagination.js';
 import {paginate} from '../Pagination/Pagenate.js';
+import DataService from '../../services/data.service';
 
 const headattr = ['num', 'name', 'desc', 'download', 'org', 'date', 'add'];
 
 export default function DataTable({color}) {
   const [showModal, setShowModal] = useState(false);
   const [datas, setDatas] = useState({
-    data: PublicData,
+    data: DataService.GetData(),
     pageSize: 5,
     currentPage: 1
   });
