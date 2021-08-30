@@ -1,8 +1,9 @@
 import React from 'react';
-
-// components
+import AuthService from '../../services/auth.service';
 
 export default function MyPageSettings() {
+  const currentUser = AuthService.getCurrentUser();
+
   return (
     <>
       <div className='relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0'>
@@ -34,7 +35,7 @@ export default function MyPageSettings() {
                   <input
                     type='text'
                     className='border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150'
-                    defaultValue='lucky.jesse'
+                    defaultValue={currentUser.username}
                   />
                 </div>
               </div>
@@ -49,7 +50,7 @@ export default function MyPageSettings() {
                   <input
                     type='email'
                     className='border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150'
-                    defaultValue='jesse@example.com'
+                    defaultValue={currentUser.email}
                   />
                 </div>
               </div>
@@ -64,7 +65,7 @@ export default function MyPageSettings() {
                   <input
                     type='text'
                     className='border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150'
-                    defaultValue='010-1234-5678'
+                    defaultValue={currentUser.phone}
                   />
                 </div>
               </div>
@@ -79,7 +80,7 @@ export default function MyPageSettings() {
                   <input
                     type='text'
                     className='border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150'
-                    defaultValue='춘식은행 112-34567-55689'
+                    defaultValue={currentUser.account}
                   />
                 </div>
               </div>

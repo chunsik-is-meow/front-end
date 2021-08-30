@@ -1,8 +1,10 @@
 import React from 'react';
-
-// components
+import AuthService from '../../services/auth.service';
+import TradeService from '../../services/trade.service';
 
 export default function MyPageProfile() {
+  const currentUser = AuthService.getCurrentUser();
+
   return (
     <>
       <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16'>
@@ -42,15 +44,14 @@ export default function MyPageProfile() {
           </div>
           <div className='text-center mt-6'>
             <h3 className='text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2'>
-              엄춘식
+              <strong>{currentUser.username}</strong>
             </h3>
           </div>
           <div className='mt-10 py-10 border-t border-blueGray-200 text-center'>
             <div className='flex flex-wrap justify-center'>
               <div className='w-full lg:w-9/12 px-4'>
                 <p className='mb-4 text-lg leading-relaxed text-blueGray-700'>
-                  An artist of considerable range, Jenna the name taken by
-                  Melbourne-raised, Brooklyn-based Nick Murphy writes
+                  {/* 보유 MEOW: {TradeService.GetCurrnetMeow(currentUser.username)} */}
                 </p>
                 <a
                   href='#pablo'
