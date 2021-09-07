@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import AuthService from '../../services/auth.service';
 import TradeService from '../../services/trade.service';
 
 export default function MyPageProfile() {
   const currentUser = AuthService.getCurrentUser();
+  const [currentMeow, setCurrentMeow] = useState('');
+
+  useEffect(async() => {
+    const meow = await TradeService.GetCurrnetMeow(currentUser.username);
+    setCurrentMeow(meow);
+  });
 
   return (
     <>
@@ -51,7 +57,7 @@ export default function MyPageProfile() {
             <div className='flex flex-wrap justify-center'>
               <div className='w-full lg:w-9/12 px-4'>
                 <p className='mb-4 text-lg leading-relaxed text-blueGray-700'>
-                  {/* 보유 MEOW: {TradeService.GetCurrnetMeow(currentUser.username)} */}
+                  보유 MEOW: {currentMeow}
                 </p>
                 <a
                   href='#pablo'
