@@ -1,14 +1,26 @@
 import React, {useState, useEffect} from 'react';
 import AuthService from '../../services/auth.service';
 import TradeService from '../../services/trade.service';
+import DataService from '../../services/data.service';
+import AIService from '../../services/ai.service';
 
 export default function MyPageProfile() {
   const currentUser = AuthService.getCurrentUser();
   const [currentMeow, setCurrentMeow] = useState('');
+  const [userBuyDataCount, setuserBuyDataCount] = useState('');
+  const [userBuyModelCount, setUserBuyModelCount] = useState('');
+  const [userTransactionCount, setTransactionCount] = useState('');
 
-  useEffect(async() => {
+  useEffect(async () => {
     const meow = await TradeService.GetCurrnetMeow(currentUser.username);
+    const data = await DataService.GetUserBuyDataCount(currentUser.username);
+    const model = await AIService.GetUserBuyModelCount(currentUser.username);
+    const trans = await TradeService.GetTransactionCount(currentUser.username);
+
     setCurrentMeow(meow);
+    setuserBuyDataCount(data);
+    setUserBuyModelCount(model);
+    setTransactionCount(trans);
   });
 
   return (
@@ -29,19 +41,19 @@ export default function MyPageProfile() {
               <div className='flex justify-center py-4 lg:pt-4 pt-8'>
                 <div className='mr-4 p-3 text-center'>
                   <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600'>
-                    22
+                    {userBuyDataCount}
                   </span>
                   <span className='text-sm text-blueGray-400'>공공 데이터</span>
                 </div>
                 <div className='mr-4 p-3 text-center'>
                   <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600'>
-                    10
+                    {userBuyModelCount}
                   </span>
                   <span className='text-sm text-blueGray-400'>인공지능 모델</span>
                 </div>
                 <div className='lg:mr-4 p-3 text-center'>
                   <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600'>
-                    89
+                    {userTransactionCount}
                   </span>
                   <span className='text-sm text-blueGray-400'>거래내역</span>
                 </div>

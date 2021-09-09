@@ -3,7 +3,7 @@ import authHeader from './auth-header';
 
 const API_URL = 'http://localhost:4000';
 
-const GetCurrnetMeow = (name) => {
+const GetCurrnetMeow = async (name) => {
   return axios
     .post(API_URL + '/api/chaincode/query', {
       channel_name: 'trade',
@@ -18,7 +18,25 @@ const GetCurrnetMeow = (name) => {
     });
 };
 
+// TODO
+const GetTransactionCount = async (name) => {
+  /* return axios
+    .post(API_URL + '/api/chaincode/query', {
+      channel_name: 'trade',
+      chaincode_name: 'trade',
+      params: ['GetTransactionCount', name]
+    },
+    {
+      headers: authHeader()
+    })
+    .then((response) => {
+      return JSON.stringify(response.data.count);
+    }); */
+  return 10;
+};
+
 
 export default {
-  GetCurrnetMeow
+  GetCurrnetMeow,
+  GetTransactionCount
 };
