@@ -4,8 +4,21 @@ import React from 'react';
 
 import CardStats from 'components/Cards/CardStats.js';
 import WhiteCardStats from 'components/Cards/WhiteCardStat.js';
+import TradeService from '../../services/trade.service';
+import AuthService from '../../services/auth.service';
+
 
 export default function HeaderStats() {
+  const currentUser = AuthService.getCurrentUser();
+  const [currentMeow, setCurrentMeow] = useState('');
+
+  useEffect(async () => {
+    const meow = await TradeService.GetCurrnetMeow(currentUser.username);
+    setCurrentMeow(meow);
+  });
+  const allDataCount = TradeService.GetAllDataCount();
+  const allModelCount = TradeService.GetAllModelCount();
+
   return (
     <>
       {/* Header */}
@@ -29,7 +42,7 @@ export default function HeaderStats() {
               <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>
                 <CardStats
                   statSubtitle='NUMBER OF DATA'
-                  statTitle='2356'
+                  statTitle={allDataCount}
                   statArrow='down'
                   statPercent='3.48'
                   statPercentColor='text-red-500'
@@ -41,7 +54,7 @@ export default function HeaderStats() {
               <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>
                 <WhiteCardStats
                   statSubtitle='NUMBER OF AI-MODEL'
-                  statTitle='924'
+                  statTitle={allModelCount}
                   statArrow='down'
                   statPercent='1.10'
                   statPercentColor='text-orange-500'
@@ -53,7 +66,7 @@ export default function HeaderStats() {
               <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>
                 <CardStats
                   statSubtitle='MEOW COIN'
-                  statTitle='2300'
+                  statTitle={currentMeow}
                   statArrow='up'
                   statPercent='12'
                   statPercentColor='text-emerald-500'
