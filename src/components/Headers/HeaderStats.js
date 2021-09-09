@@ -1,23 +1,29 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 // components
-
 import CardStats from 'components/Cards/CardStats.js';
 import WhiteCardStats from 'components/Cards/WhiteCardStat.js';
 import TradeService from '../../services/trade.service';
+import DataService from '../../services/data.service';
+import AIService from '../../services/ai.service';
 import AuthService from '../../services/auth.service';
 
 
 export default function HeaderStats() {
-  const currentUser = AuthService.getCurrentUser();
   const [currentMeow, setCurrentMeow] = useState('');
+  const [dataCount, setDataCount] = useState('');
+  const [modelCount, setModelCount] = useState('');
 
   useEffect(async () => {
+    const currentUser = AuthService.getCurrentUser();
     const meow = await TradeService.GetCurrnetMeow(currentUser.username);
+    const allDataCount = await DataService.GetAllDataCount();
+    const allModelCount = await AIService.GetAllModelCount();
     setCurrentMeow(meow);
+    setDataCount(allDataCount);
+    setModelCount(allModelCount);
   });
-  const allDataCount = TradeService.GetAllDataCount();
-  const allModelCount = TradeService.GetAllModelCount();
+
 
   return (
     <>
@@ -42,7 +48,7 @@ export default function HeaderStats() {
               <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>
                 <CardStats
                   statSubtitle='NUMBER OF DATA'
-                  statTitle={allDataCount}
+                  statTitle={dataCount}
                   statArrow='down'
                   statPercent='3.48'
                   statPercentColor='text-red-500'
@@ -54,7 +60,7 @@ export default function HeaderStats() {
               <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>
                 <WhiteCardStats
                   statSubtitle='NUMBER OF AI-MODEL'
-                  statTitle={allModelCount}
+                  statTitle={modelCount}
                   statArrow='down'
                   statPercent='1.10'
                   statPercentColor='text-orange-500'

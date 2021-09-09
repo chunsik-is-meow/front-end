@@ -1,20 +1,25 @@
 import React, {useState, useEffect} from 'react';
 import AuthService from '../../services/auth.service';
 import TradeService from '../../services/trade.service';
-
+import DataService from '../../services/data.service';
+import AIService from '../../services/ai.service';
 
 export default function MyPageProfile() {
   const currentUser = AuthService.getCurrentUser();
-  const [currentMeow, setCurrentMeow, userBuyDataCount, setUserBuyDataCount, userBuyModelCount, setUserBuyModelCount, transactionCount, setTransactionCount] = useState('');
+  const [currentMeow, setCurrentMeow] = useState('');
+  const [userBuyDataCount, setuserBuyDataCount] = useState('');
+  const [userBuyModelCount, setUserBuyModelCount] = useState('');
+  const [userTransactionCount, setTransactionCount] = useState('');
 
   useEffect(async () => {
     const meow = await TradeService.GetCurrnetMeow(currentUser.username);
-    setCurrentMeow(meow);
-    const data = await TradeService.GetUserBuyDataCount(currentUser.username);
-    setUserBuyDataCount(data);
-    const model = await TradeService.GetUserBuyModelCount(currentUser.username);
-    setUserBuyModelCount(model);
+    const data = await DataService.GetUserBuyDataCount(currentUser.username);
+    const model = await AIService.GetUserBuyModelCount(currentUser.username);
     const trans = await TradeService.GetTransactionCount(currentUser.username);
+
+    setCurrentMeow(meow);
+    setuserBuyDataCount(data);
+    setUserBuyModelCount(model);
     setTransactionCount(trans);
   });
 
@@ -48,7 +53,7 @@ export default function MyPageProfile() {
                 </div>
                 <div className='lg:mr-4 p-3 text-center'>
                   <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600'>
-                    {transactionCount}
+                    {userTransactionCount}
                   </span>
                   <span className='text-sm text-blueGray-400'>거래내역</span>
                 </div>
