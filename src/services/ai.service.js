@@ -20,7 +20,7 @@ const GetAllModelCount = async () => {
     .post(API_URL + '/api/chaincode/model', {
       channel_name: 'ai-model',
       chaincode_name: 'ai-model',
-      params: ['GetAllAIModelCount']
+      params: ['GetAIModelCount', 'AC']
     },
     {
       headers: authHeader()
@@ -31,19 +31,18 @@ const GetAllModelCount = async () => {
 };
 
 const GetUserBuyModelCount = async (name) => {
-  /* return axios
-    .post(API_URL + '/api/chaincode/query', {
-      channel_name: 'trade',
-      chaincode_name: 'trade',
-      params: ['GetUserBuyModelCount', name]
+  return axios
+    .post(API_URL + '/api/chaincode/model', {
+      channel_name: 'ai-model',
+      chaincode_name: 'ai-model',
+      params: ['GetAIModelCount', name]
     },
     {
       headers: authHeader()
     })
     .then((response) => {
       return JSON.stringify(response.data.count);
-    }); */
-  return 0;
+    });
 };
 
 export default {

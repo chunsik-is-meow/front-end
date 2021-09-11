@@ -20,7 +20,7 @@ const GetAllDataCount = async () => {
     .post(API_URL + '/api/chaincode/query', {
       channel_name: 'data',
       chaincode_name: 'data',
-      params: ['GetAllDataCount']
+      params: ['GetCommonDataCount', 'DC']
     },
     {
       headers: authHeader()
@@ -30,26 +30,12 @@ const GetAllDataCount = async () => {
     });
 };
 
-// TODO
-// get Buy data by user
 const GetUserBuyDataCount = async (name) => {
-  /* return axios
-    .post(API_URL + '/api/chaincode/query', {
-      channel_name: 'trade',
-      chaincode_name: 'trade',
-      params: ['GetUserBuyDataCount', name]
-    },
-    {
-      headers: authHeader()
-    })
-    .then((response) => {
-      return JSON.stringify(response.data.amount);
-    }); */
   return axios
     .post(API_URL + '/api/chaincode/query', {
       channel_name: 'data',
       chaincode_name: 'data',
-      params: ['GetAllDataCount']
+      params: ['GetCommonDataCount', name]
     },
     {
       headers: authHeader()
