@@ -1,5 +1,4 @@
 import axios from 'axios';
-import PublicData from '../components/DataDump/PublicData';
 import authHeader from './auth-header';
 
 // data 3개 임포트
@@ -8,13 +7,12 @@ const API_URL = 'http://localhost:4000';
 const GetData = async () => {
   return axios
   // TODO chage to alldata
-    .post(API_URL + '/api/chaincode/allmodel', {},
+    .post(API_URL + '/api/chaincode/alldata', {},
       {
         headers: authHeader()
       })
     .then((response) => {
-      console.log(response.data);
-      return PublicData;
+      return response.data;
     });
 };
 
