@@ -1,15 +1,84 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import TransService from '../../services/transaction.service';
-import {Pagination} from 'components/Pagination/Pagination.js';
+import TradeService from '../../services/trade.service';
+import AuthService from '../../services/auth.service';
+import {Pagination} from '../Pagination/Pagination.js';
+import {paginate} from '../Pagination/Pagenate.js';
 
 // components
+const headattr = ['from', 'to', 'price', 'timestamp'];
 
-const headattr = ['From', 'to', 'price', 'date'];
+export default function MyPageTable({color}) {
+  const currentUser = AuthService.getCurrentUser();
+
+  const [datas, setDatas] = useState({
+    data: '',
+    pageSize: 5,
+    currentPage: 1
+  });
+
+  useEffect(async () => {
+    const transactionData = await TradeService.GetTransactionData(currentUser.username);
+    setDatas({...datas, data: transactionData});
+  }, []);
+
+  const handlePageChange = (page) => {
+    setDatas({...datas, currentPage: page});
+  };
+
+  const {data, pageSize, currentPage} = datas;
+  const pagedDates = paginate(data, currentPage, pageSize);
+
+  const {length: count} = datas.data;
+  if (count === 0) {
+    return <p>거래내역 정보가 없습니다.</p>;
+  }
+
+  return (
+    <>
+      <div
+        className={
+          'relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded ' +
+          (color === 'light' ? 'bg-white' : 'bg-lightBlue-900 text-white')
+        }
+      >
+        <div className='rounded-t mb-0 px-4 py-3 border-0'>
+          <div className='flex flex-wrap items-center'>
+            <div className='relative w-full px-4 max-w-full flex-grow flex-1'>
+              <h3
+                className={
+                  'font-semibold text-lg ' +
+                  (color === 'light' ? 'text-blueGray-700' : 'text-white')
+                }
+              >
+                거래 내역
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div className='block w-full overflow-x-auto'>
+          {/* Projects table */}
+          <table className='items-center w-full bg-transparent border-collapse'>
+            <TableHead attrs={headattr}/>
+            <TableBody attrs={headattr} items={pagedDates}/>
+          </table>
+          <div className='m-4'>
+            <Pagination
+              itemsCount={count}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
 
 const TableHeaderComponent = (props) => {
   const {attr, color} = props;
-  if (attr === 'From') {
+  if (attr === 'from') {
     return (
       <th
         className={
@@ -72,7 +141,7 @@ const TableHead = (props) => {
 
 const TableBodyComponent = (props) => {
   const {item, attr, color} = props;
-  if (attr === 'From') {
+  if (attr === 'from') {
     return (
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center'>
         <span
@@ -125,46 +194,6 @@ const TableBody = (props) => {
     </tbody>
   );
 };
-
-
-export default function MyPageTable({color}) {
-  return (
-    <>
-      <div
-        className={
-          'relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded ' +
-          (color === 'light' ? 'bg-white' : 'bg-lightBlue-900 text-white')
-        }
-      >
-        <div className='rounded-t mb-0 px-4 py-3 border-0'>
-          <div className='flex flex-wrap items-center'>
-            <div className='relative w-full px-4 max-w-full flex-grow flex-1'>
-              <h3
-                className={
-                  'font-semibold text-lg ' +
-                  (color === 'light' ? 'text-blueGray-700' : 'text-white')
-                }
-              >
-                거래 내역
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div className='block w-full overflow-x-auto'>
-          {/* Projects table */}
-          <table className='items-center w-full bg-transparent border-collapse'>
-            <TableHead attrs={headattr} />
-            <TableBody attrs={headattr} items={TransService.GetTransData()} />
-          </table>
-          <div className='m-4'>
-            <Pagination />
-          </div>
-        </div>
-      </div>
-
-    </>
-  );
-}
 
 MyPageTable.defaultProps = {
   color: 'light'

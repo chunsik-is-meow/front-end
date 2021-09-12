@@ -1,19 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import AIService from '../../services/ai.service';
 import {Pagination} from '../Pagination/Pagination.js';
 import {paginate} from '../Pagination/Pagenate.js';
 
-const headattr = ['num', 'name', 'price', 'download', 'producer', 'date', 'add'];
+const headattr = ['num', 'name', 'price', 'downloaded', 'owner', 'timestamp', 'add'];
 
 export default function AITable({color}) {
   const [showModal, setShowModal] = useState(false);
 
   const [datas, setDatas] = useState({
-    data: AIService.GetAIData(),
+    data: '',
     pageSize: 5,
     currentPage: 1
   });
+
+  useEffect(async () => {
+    const AIData = await AIService.GetAIData();
+    setDatas({...datas, data: AIData});
+  }, []);
 
   const [modalDatas, setModalDatas] = useState({
     title: '',
@@ -34,7 +39,7 @@ export default function AITable({color}) {
     return <p>공공 데이터 정보가 없습니다.</p>;
   }
   const handleShowModal = (items) => {
-    setModalDatas({title: items.name, language: items.language, performance: items.performance, description: items.description});
+    setModalDatas({title: items.name, language: items.language, performance: items.score, description: items.description});
     setShowModal(true);
   };
   return (
@@ -90,7 +95,7 @@ export default function AITable({color}) {
                     언어: {modalDatas.language}
                     </p>
                     <p className='m-4'>
-                    성능:{modalDatas.performance}
+                    성능: {modalDatas.performance} %
                     </p>
                     <p className='m-4 text-blueGray-500 text-lg leading-relaxed'>
                     설명: {modalDatas.description}
@@ -170,7 +175,7 @@ const TableHeaderComponent = (props) => {
       > 가격
       </th>
     );
-  } else if (attr === 'download') {
+  } else if (attr === 'downloaded') {
     return (
       <th
         className={
@@ -182,7 +187,7 @@ const TableHeaderComponent = (props) => {
       > 다운로드 횟수
       </th>
     );
-  } else if (attr === 'producer') {
+  } else if (attr === 'owner') {
     return (
       <th
         className={
@@ -194,7 +199,7 @@ const TableHeaderComponent = (props) => {
       > 제작자
       </th>
     );
-  } else if (attr === 'date') {
+  } else if (attr === 'timestamp') {
     return (
       <th
         className={
@@ -258,14 +263,14 @@ const TableBodyComponent = (props) => {
         {item[attr]} meow
       </td>
     );
-  } else if (attr === 'download') {
+  } else if (attr === 'downloaded') {
     return (
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
         <i className='fas fa-circle text-emerald-500 mr-2' />{' '}
         {item[attr]}
       </td>
     );
-  } else if (attr === 'producer') {
+  } else if (attr === 'owner') {
     return (
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
         <div className='flex'>
@@ -273,7 +278,7 @@ const TableBodyComponent = (props) => {
         </div>
       </td>
     );
-  } else if (attr === 'date') {
+  } else if (attr === 'timestamp') {
     return (
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
         <div className='flex items-center'>

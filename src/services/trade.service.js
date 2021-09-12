@@ -18,6 +18,21 @@ const GetCurrnetMeow = async (name) => {
     });
 };
 
+const GetTransactionData = async (name) => {
+  return axios
+    .post(API_URL + '/api/chaincode/query', {
+      channel_name: 'trade',
+      chaincode_name: 'trade',
+      params: ['GetQueryHistory', name]
+    },
+    {
+      headers: authHeader()
+    })
+    .then((response) => {
+      return response.data;
+    });
+};
+
 // TODO
 const GetTransactionCount = async (name) => {
   /* return axios
@@ -38,5 +53,6 @@ const GetTransactionCount = async (name) => {
 
 export default {
   GetCurrnetMeow,
-  GetTransactionCount
+  GetTransactionCount,
+  GetTransactionData
 };

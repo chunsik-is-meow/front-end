@@ -1,18 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {Pagination} from '../Pagination/Pagination.js';
 import {paginate} from '../Pagination/Pagenate.js';
 import DataService from '../../services/data.service';
 
-const headattr = ['num', 'name', 'desc', 'download', 'org', 'date', 'add'];
+const headattr = ['num', 'name', 'description', 'downloaded', 'owner', 'timestamp', 'add'];
 
 export default function DataTable({color}) {
   const [showModal, setShowModal] = useState(false);
   const [datas, setDatas] = useState({
-    data: DataService.GetData(),
+    data: '',
     pageSize: 5,
     currentPage: 1
   });
+
+  useEffect(async () => {
+    const publicData = await DataService.GetData();
+    setDatas({...datas, data: publicData});
+  }, []);
 
   const [modalDatas, setModalDatas] = useState({
     title: '',
@@ -165,7 +170,7 @@ const TableHeaderComponent = (props) => {
       > 이름
       </th>
     );
-  } else if (attr === 'desc') {
+  } else if (attr === 'description') {
     return (
       <th
         className={
@@ -177,7 +182,7 @@ const TableHeaderComponent = (props) => {
       > 설명
       </th>
     );
-  } else if (attr === 'download') {
+  } else if (attr === 'downloaded') {
     return (
       <th
         className={
@@ -189,7 +194,7 @@ const TableHeaderComponent = (props) => {
       > 다운로드 횟수
       </th>
     );
-  } else if (attr === 'org') {
+  } else if (attr === 'owner') {
     return (
       <th
         className={
@@ -201,7 +206,7 @@ const TableHeaderComponent = (props) => {
       > 기관
       </th>
     );
-  } else if (attr === 'date') {
+  } else if (attr === 'timestamp') {
     return (
       <th
         className={
@@ -262,20 +267,20 @@ const TableBodyComponent = (props) => {
         {item[attr]}
       </td>
     );
-  } else if (attr === 'desc') {
+  } else if (attr === 'description') {
     return (
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
         {item[attr]}
       </td>
     );
-  } else if (attr === 'download') {
+  } else if (attr === 'downloaded') {
     return (
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
         <i className='fas fa-circle text-emerald-500 mr-2' />{' '}
         {item[attr]}
       </td>
     );
-  } else if (attr === 'org') {
+  } else if (attr === 'owner') {
     return (
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
         <div className='flex'>
@@ -283,7 +288,7 @@ const TableBodyComponent = (props) => {
         </div>
       </td>
     );
-  } else if (attr === 'date') {
+  } else if (attr === 'timestamp') {
     return (
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
         <div className='flex items-center'>
