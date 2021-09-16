@@ -38,10 +38,24 @@ export default function AITable({color}) {
   if (count === 0) {
     return <p>공공 데이터 정보가 없습니다.</p>;
   }
+
   const handleShowModal = (items) => {
     setModalDatas({title: items.name, language: items.language, performance: items.score, description: items.description});
     setShowModal(true);
   };
+
+  const donwloadModelFile = async (filename) => {
+    const filedata = await AIService.DownloadModel(filename);
+    const url = window.URL.createObjectURL(new Blob([filedata]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `${filename}`);
+    link.style.cssText = 'display:none';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+
   return (
     <>
       <div
@@ -104,9 +118,9 @@ export default function AITable({color}) {
                       <button
                         className='bg-emerald-500 justify-self-center m-4 text-white w-full active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150'
                         type='button'
-                        onClick={() => setShowModal(false)}
+                        onClick={() => donwloadModelFile(`${modalDatas.title}.h5`)}
                       >
-                    구매하기
+                      구매하기
                       </button>
                     </div>
                   </div>

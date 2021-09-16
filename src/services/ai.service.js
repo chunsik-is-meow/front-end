@@ -46,8 +46,20 @@ const GetUserBuyModelCount = async (name) => {
     });
 };
 
+const DownloadModel = async (filename) => {
+  return axios
+    .get(API_URL + '/api/download/ai-model/' + filename,
+      {
+        headers: authHeader()
+      })
+    .then((response) => {
+      return response.data;
+    });
+};
+
 export default {
   GetAIData,
   GetAllModelCount,
-  GetUserBuyModelCount
+  GetUserBuyModelCount,
+  DownloadModel
 };

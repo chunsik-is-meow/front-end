@@ -47,8 +47,20 @@ const GetUserBuyDataCount = async (name) => {
     });
 };
 
+const DownloadData = async (filename) => {
+  return axios
+    .get(API_URL + '/api/download/data/' + filename,
+      {
+        headers: authHeader()
+      })
+    .then((response) => {
+      return response.data;
+    });
+};
+
 export default {
   GetData,
   GetAllDataCount,
-  GetUserBuyDataCount
+  GetUserBuyDataCount,
+  DownloadData
 };

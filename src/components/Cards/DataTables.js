@@ -44,6 +44,19 @@ export default function DataTable({color}) {
     setModalDatas({title: items.name, extensions: items.extensions, classification: items.classification, department: items.department, contact: items.contact, description: items.description});
     setShowModal(true);
   };
+
+  const donwloadDataFile = async (filename) => {
+    const filedata = await DataService.DownloadData(filename);
+    const url = window.URL.createObjectURL(new Blob([filedata]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `${filename}`);
+    link.style.cssText = 'display:none';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
   return (
     <>
       <div
@@ -112,9 +125,9 @@ export default function DataTable({color}) {
                       <button
                         className='bg-emerald-500 justify-self-center m-4 text-white w-full active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150'
                         type='button'
-                        onClick={() => setShowModal(false)}
+                        onClick={() => donwloadDataFile(`${modalDatas.title}.csv`)}
                       >
-                    download
+                        다운로드
                       </button>
                     </div>
                   </div>
