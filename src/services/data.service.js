@@ -47,14 +47,29 @@ const GetUserBuyDataCount = async (name) => {
     });
 };
 
-const DownloadData = async (filename) => {
+const DownloadData = async (filename, username) => {
   return axios
-    .get(API_URL + '/api/download/data/' + filename,
-      {
-        headers: authHeader()
-      })
+    .post(API_URL + '/api/download/data/' + filename, {
+      downloader: username
+    },
+    {
+      headers: authHeader()
+    })
     .then((response) => {
       return response.data;
+    });
+};
+
+const UploadData = async (params) => {
+  return axios
+    .post(API_URL + '/api/upload/data', {
+      params: ['PutCommonData', ...params]
+    },
+    {
+      headers: authHeader()
+    })
+    .then((response) => {
+      return response;
     });
 };
 
@@ -62,5 +77,6 @@ export default {
   GetData,
   GetAllDataCount,
   GetUserBuyDataCount,
-  DownloadData
+  DownloadData,
+  UploadData
 };

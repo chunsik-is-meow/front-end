@@ -1,11 +1,25 @@
 import React from 'react';
 import ReactFileReader from 'react-file-reader';
+import DataService from '../../services/data.service';
+import AuthService from '../../services/auth.service';
 
 export default function MyPageAITable() {
+  const currentUser = AuthService.getCurrentUser();
   const handleFiles = (files) => {
+    // alert(files.base64);
     let reader = new FileReader();
-    reader.onload = function (e) {
+    reader.onload = async (e) => {
       alert(reader.result);
+      const encodingContents = Buffer.from(reader.result).toString('base64');
+      alert(encodingContents);
+      // uploader, name, version, description, owner, contents, date
+      const params = [currentUser.username, 'uploadtest2', '1.0', 'iris_classfication', 'R.A.Fisher', encodingContents, '2021-09-17-13-43'];
+      const result = await DataService.UploadData(params);
+      if (result.status === 200) {
+        alert('업로드에 성공하였습니다.');
+      } else {
+        alert('업로드에 실패하였습니다.');
+      }
     };
     reader.readAsText(files[0]);
   };
@@ -24,7 +38,7 @@ export default function MyPageAITable() {
                 공공데이터 업로드하기
               </button>
             </ReactFileReader>
-            <ReactFileReader handleFiles={handleFiles} fileTypes={'.h5'}>
+            <ReactFileReader handleFiles={handleFiles} fileTypes={'.h5'} base64={true}>
               <button
                 className='bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-2 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150'
                 type='button'

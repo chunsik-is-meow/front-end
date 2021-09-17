@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import {Pagination} from '../Pagination/Pagination.js';
 import {paginate} from '../Pagination/Pagenate.js';
 import DataService from '../../services/data.service';
+import AuthService from '../../services/auth.service.js';
 
 const headattr = ['num', 'name', 'description', 'downloaded', 'owner', 'timestamp', 'add'];
 
 export default function DataTable({color}) {
+  const currentUser = AuthService.getCurrentUser();
   const [showModal, setShowModal] = useState(false);
   const [datas, setDatas] = useState({
     data: '',
@@ -46,16 +48,16 @@ export default function DataTable({color}) {
   };
 
   const donwloadDataFile = async (filename) => {
-    const filedata = await DataService.DownloadData(filename);
+    const filedata = await DataService.DownloadData(filename, currentUser.username);
     const url = window.URL.createObjectURL(new Blob([filedata]));
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `${filename}`);
+    link.setAttribute('download', `${filename}.csv`);
     link.style.cssText = 'display:none';
     document.body.appendChild(link);
     link.click();
     link.remove();
-  }
+  };
 
   return (
     <>
@@ -125,7 +127,7 @@ export default function DataTable({color}) {
                       <button
                         className='bg-emerald-500 justify-self-center m-4 text-white w-full active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150'
                         type='button'
-                        onClick={() => donwloadDataFile(`${modalDatas.title}.csv`)}
+                        onClick={() => donwloadDataFile(modalDatas.title)}
                       >
                         다운로드
                       </button>
