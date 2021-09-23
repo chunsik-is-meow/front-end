@@ -40,7 +40,7 @@ export default function AITable({color}) {
 
   const {length: count} = datas.data;
   if (count === 0) {
-    return <p>공공 데이터 정보가 없습니다.</p>;
+    return <p>인공지능 모델 정보가 없습니다.</p>;
   }
 
   const handleShowModal = (items) => {
