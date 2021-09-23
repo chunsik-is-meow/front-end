@@ -6,7 +6,7 @@ function CardBuyToken() {
       <div className='flex-auto px-4 lg:px-10 py-10 pt-0'>
         <form>
           <div className='text-center flex justify-between'>
-            <h6 className='text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase'>
+            <h6 className='text-blueGray-400 text-sm px-6 py-6 font-bold uppercase'>
               매수하기
             </h6>
             <button
@@ -63,7 +63,7 @@ function CardSellToken() {
       <div className='flex-auto px-4 lg:px-10 py-10 pt-0'>
         <form>
           <div className='text-center flex justify-between'>
-            <h6 className='text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase'>
+            <h6 className='text-blueGray-400 text-sm px-6 py-6 font-bold uppercase'>
               매도하기
             </h6>
             <button

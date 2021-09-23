@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import AIService from '../../services/ai.service';
+import AuthService from '../../services/auth.service.js';
 import {Pagination} from '../Pagination/Pagination.js';
 import {paginate} from '../Pagination/Pagenate.js';
 
@@ -8,6 +9,7 @@ const headattr = ['num', 'name', 'price', 'downloaded', 'owner', 'timestamp', 'a
 
 export default function AITable({color}) {
   const [showModal, setShowModal] = useState(false);
+  const currentUser = AuthService.getCurrentUser();
 
   const [datas, setDatas] = useState({
     data: '',
@@ -24,7 +26,9 @@ export default function AITable({color}) {
     title: '',
     language: '',
     performance: '',
-    description: ''
+    description: '',
+    uploader: '',
+    version: ''
   });
 
   const handlePageChange = (page) => {
@@ -40,16 +44,16 @@ export default function AITable({color}) {
   }
 
   const handleShowModal = (items) => {
-    setModalDatas({title: items.name, language: items.language, performance: items.score, description: items.description});
+    setModalDatas({title: items.name, language: items.language, performance: items.score, uploader: items.uploader, version: items.version, description: items.description});
     setShowModal(true);
   };
 
-  const donwloadModelFile = async (filename) => {
-    const filedata = await AIService.DownloadModel(filename);
+  const donwloadModelFile = async (filename, uploader, version) => {
+    const filedata = await AIService.DownloadModel(filename, currentUser.username, uploader, version);
     const url = window.URL.createObjectURL(new Blob([filedata]));
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `${filename}`);
+    link.setAttribute('download', `${filename}.h5`);
     link.style.cssText = 'display:none';
     document.body.appendChild(link);
     link.click();
@@ -66,14 +70,14 @@ export default function AITable({color}) {
       >
         <div className='rounded-t mb-0 px-4 py-3 border-0'>
           <div className='flex flex-wrap items-center'>
-            <div className='relative w-full px-4 max-w-full flex-grow flex-1'>
+            <div className='relative w-full px-4 py-3 max-w-full flex-grow flex-1'>
               <h3
                 className={
                   'font-semibold text-lg ' +
                   (color === 'light' ? 'text-blueGray-700' : 'text-white')
                 }
               >
-                AI Model
+                인공지능 모델
               </h3>
             </div>
           </div>
@@ -118,7 +122,7 @@ export default function AITable({color}) {
                       <button
                         className='bg-emerald-500 justify-self-center m-4 text-white w-full active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150'
                         type='button'
-                        onClick={() => donwloadModelFile(`${modalDatas.title}.h5`)}
+                        onClick={() => donwloadModelFile(modalDatas.title, modalDatas.uploader, modalDatas.version)}
                       >
                       구매하기
                       </button>

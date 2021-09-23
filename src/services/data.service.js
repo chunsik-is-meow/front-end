@@ -47,10 +47,12 @@ const GetUserBuyDataCount = async (name) => {
     });
 };
 
-const DownloadData = async (filename, username) => {
+const DownloadData = async (filename, username, uploader, version) => {
   return axios
     .post(API_URL + '/api/download/data/' + filename, {
-      downloader: username
+      downloader: username,
+      uploader: uploader,
+      version: version
     },
     {
       headers: authHeader()

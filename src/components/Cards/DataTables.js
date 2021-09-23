@@ -26,7 +26,8 @@ export default function DataTable({color}) {
     extensions: '',
     classification: '',
     department: '',
-    contact: '',
+    uploader: '',
+    version: '',
     description: ''
   });
 
@@ -43,12 +44,12 @@ export default function DataTable({color}) {
   }
 
   const handleShowModal = (items) => {
-    setModalDatas({title: items.name, extensions: items.extensions, classification: items.classification, department: items.department, contact: items.contact, description: items.description});
+    setModalDatas({title: items.name, extensions: items.extensions, classification: items.classification, department: items.department, uploader: items.uploader, version: items.version, description: items.description});
     setShowModal(true);
   };
 
-  const donwloadDataFile = async (filename) => {
-    const filedata = await DataService.DownloadData(filename, currentUser.username);
+  const donwloadDataFile = async (filename, uploader, version) => {
+    const filedata = await DataService.DownloadData(filename, currentUser.username, uploader, version);
     const url = window.URL.createObjectURL(new Blob([filedata]));
     const link = document.createElement('a');
     link.href = url;
@@ -69,7 +70,7 @@ export default function DataTable({color}) {
       >
         <div className='rounded-t mb-0 px-4 py-3 border-0'>
           <div className='flex flex-wrap items-center'>
-            <div className='relative w-full px-4 max-w-full flex-grow flex-1'>
+            <div className='relative w-full px-4 py-3 max-w-full flex-grow flex-1'>
               <h3
                 className={
                   'font-semibold text-lg ' +
@@ -118,16 +119,13 @@ export default function DataTable({color}) {
                     부서명: {modalDatas.department}
                     </p>
                     <p className='m-4'>
-                    부서 전화번호: {modalDatas.contact}
-                    </p>
-                    <p className='m-4 text-blueGray-500 text-lg leading-relaxed'>
                     설명: {modalDatas.description}
                     </p>
                     <div className='border-0 box-border flex justify-center'>
                       <button
                         className='bg-emerald-500 justify-self-center m-4 text-white w-full active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150'
                         type='button'
-                        onClick={() => donwloadDataFile(modalDatas.title)}
+                        onClick={() => donwloadDataFile(modalDatas.title, modalDatas.uploader, modalDatas.version)}
                       >
                         다운로드
                       </button>

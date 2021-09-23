@@ -248,6 +248,92 @@ export default function UserSidebar() {
                   거래내역
                   </div>
                 </Link>
+                <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/user/upload/model") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/user/upload/model"
+                >
+                  <div className='w-8 inline-block ' >
+                  <i
+                    className={
+                      "fas fa-shopping-bag mr-2 text-sm " +
+                      (window.location.href.indexOf("/user/upload/model") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  </div>
+                  <div className='inline-block'>
+                  AI 모델 업로드
+                  </div>
+                </Link>
+              </li>
+              </li>
+            </ul>
+
+            {/* Divider */}
+            <hr className="my-4 md:min-w-full" />
+            {/* Heading */}
+            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+              관리자
+            </h6>
+            {/* Navigation */}
+
+            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/user/tools") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/user/tools"
+                >
+                  <div className='w-8 inline-block ' >
+                  <i
+                    className={
+                      "fas fa-shopping-bag mr-2 text-sm " +
+                      (window.location.href.indexOf("/user/tools") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  </div>
+                  <div className='inline-block'>
+                  네트워크 도구
+                  </div>
+                </Link>
+                <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/user/upload/data") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/user/upload/data"
+                >
+                  <div className='w-8 inline-block ' >
+                  <i
+                    className={
+                      "fas fa-shopping-bag mr-2 text-sm " +
+                      (window.location.href.indexOf("/user/upload/data") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  </div>
+                  <div className='inline-block'>
+                  공공데이터 업로드
+                  </div>
+                </Link>
+              </li>
               </li>
             </ul>
           </div>

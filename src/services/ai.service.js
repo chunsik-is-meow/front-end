@@ -46,14 +46,31 @@ const GetUserBuyModelCount = async (name) => {
     });
 };
 
-const DownloadModel = async (filename) => {
+const DownloadModel = async (filename, username, uploader, version) => {
   return axios
-    .get(API_URL + '/api/download/ai-model/' + filename,
-      {
-        headers: authHeader()
-      })
+    .post(API_URL + '/api/download/model/' + filename, {
+      downloader: username,
+      uploader: uploader,
+      version: version
+    },
+    {
+      headers: authHeader()
+    })
     .then((response) => {
       return response.data;
+    });
+};
+
+const UploadModle = async (params) => {
+  return axios
+    .post(API_URL + '/api/upload/model', {
+      params: ['PutAIModel', ...params]
+    },
+    {
+      headers: authHeader()
+    })
+    .then((response) => {
+      return response;
     });
 };
 
@@ -61,5 +78,6 @@ export default {
   GetAIData,
   GetAllModelCount,
   GetUserBuyModelCount,
-  DownloadModel
+  DownloadModel,
+  UploadModle
 };

@@ -15,6 +15,9 @@ import AIModel from '../views/user/AIModel';
 import Token from '../views/user/Token';
 import MyPage from '../views/user/MyPage';
 import Transaction from '../views/user/Transaction';
+import ModelUpload from '../views/user/ModelUpload';
+import DataUpload from '../views/user/DataUpload';
+import Tools from '../views/user/Tools';
 
 export default function User() {
   return (
@@ -32,6 +35,9 @@ export default function User() {
             <RouteWithAuth path='/user/token' exact component={Token} />
             <RouteWithAuth path='/user/mypage' exact component={MyPage} />
             <RouteWithAuth path='/user/transaction' exact component={Transaction} />
+            <RouteWithAuth path='/user/upload/data' exact component={DataUpload} />
+            <RouteWithAuth path='/user/upload/model' exact component={ModelUpload} />
+            <RouteWithAuth path='/user/tools' exact component={Tools} />
             <Redirect from='/' to='/user/dashboard' />
           </Switch>
           <FooterAdmin />
