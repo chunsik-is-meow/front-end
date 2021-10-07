@@ -40,18 +40,18 @@ export default function CardBuyTokenTable() {
             <tbody>
               <tr>
                 <th className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left'>
-                  Facebook
+                  sindong
                 </th>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                   1,480
                 </td>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                   <div className='flex items-center'>
-                    <span className='mr-2'>60%</span>
+                    <span className='mr-2'>2%</span>
                     <div className='relative w-full'>
                       <div className='overflow-hidden h-2 text-xs flex rounded bg-red-200'>
                         <div
-                          style={{width: '60%'}}
+                          style={{width: '2%'}}
                           className='shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500'
                         />
                       </div>
@@ -61,18 +61,18 @@ export default function CardBuyTokenTable() {
               </tr>
               <tr>
                 <th className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left'>
-                  Facebook
+                  hunsu
                 </th>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  5,480
+                  1,500
                 </td>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                   <div className='flex items-center'>
-                    <span className='mr-2'>70%</span>
+                    <span className='mr-2'>3%</span>
                     <div className='relative w-full'>
                       <div className='overflow-hidden h-2 text-xs flex rounded bg-red-200'>
                         <div
-                          style={{width: '70%'}}
+                          style={{width: '3%'}}
                           className='shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500'
                         />
                       </div>
@@ -82,18 +82,18 @@ export default function CardBuyTokenTable() {
               </tr>
               <tr>
                 <th className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left'>
-                  Google
+                  kisu
                 </th>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  4,807
+                  1,520
                 </td>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                   <div className='flex items-center'>
-                    <span className='mr-2'>80%</span>
+                    <span className='mr-2'>5%</span>
                     <div className='relative w-full'>
                       <div className='overflow-hidden h-2 text-xs flex rounded bg-red-200'>
                         <div
-                          style={{width: '80%'}}
+                          style={{width: '5%'}}
                           className='shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500'
                         />
                       </div>
@@ -103,19 +103,19 @@ export default function CardBuyTokenTable() {
               </tr>
               <tr>
                 <th className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left'>
-                  Instagram
+                  sugin
                 </th>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  3,678
+                  1,534
                 </td>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                   <div className='flex items-center'>
-                    <span className='mr-2'>75%</span>
+                    <span className='mr-2'>7%</span>
                     <div className='relative w-full'>
-                      <div className='overflow-hidden h-2 text-xs flex rounded bg-lightBlue-200'>
+                      <div className='overflow-hidden h-2 text-xs flex rounded bg-red-200'>
                         <div
-                          style={{width: '75%'}}
-                          className='shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-lightBlue-500'
+                          style={{width: '7%'}}
+                          className='shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500'
                         />
                       </div>
                     </div>
@@ -124,19 +124,19 @@ export default function CardBuyTokenTable() {
               </tr>
               <tr>
                 <th className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left'>
-                  twitter
+                  juhun
                 </th>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  2,645
+                  1,570
                 </td>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                   <div className='flex items-center'>
-                    <span className='mr-2'>30%</span>
+                    <span className='mr-2'>10%</span>
                     <div className='relative w-full'>
-                      <div className='overflow-hidden h-2 text-xs flex rounded bg-lightBlue-200'>
+                      <div className='overflow-hidden h-2 text-xs flex rounded bg-red-200'>
                         <div
-                          style={{width: '30%'}}
-                          className='shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-lightBlue-500'
+                          style={{width: '10%'}}
+                          className='shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500'
                         />
                       </div>
                     </div>
@@ -145,19 +145,19 @@ export default function CardBuyTokenTable() {
               </tr>
               <tr>
                 <th className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left'>
-                  twitter
+                  sugi
                 </th>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  2,645
+                  1,600
                 </td>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                   <div className='flex items-center'>
-                    <span className='mr-2'>30%</span>
+                    <span className='mr-2'>11%</span>
                     <div className='relative w-full'>
-                      <div className='overflow-hidden h-2 text-xs flex rounded bg-lightBlue-200'>
+                      <div className='overflow-hidden h-2 text-xs flex rounded bg-red-200'>
                         <div
-                          style={{width: '30%'}}
-                          className='shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-lightBlue-500'
+                          style={{width: '11%'}}
+                          className='shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500'
                         />
                       </div>
                     </div>

@@ -33,6 +33,21 @@ const GetTransactionData = async (name) => {
     });
 };
 
+const BuyModel = async (params) => {
+  return axios
+    .post(API_URL + '/api/chaincode/invoke_model', {
+      channel_name: 'trade',
+      chaincode_name: 'trade',
+      params: ['BuyModel', ...params]
+    },
+    {
+      headers: authHeader()
+    })
+    .then((response) => {
+      return response;
+    });
+};
+
 // TODO
 const GetTransactionCount = async (name) => {
   /* return axios
@@ -54,5 +69,6 @@ const GetTransactionCount = async (name) => {
 export default {
   GetCurrnetMeow,
   GetTransactionCount,
-  GetTransactionData
+  GetTransactionData,
+  BuyModel
 };

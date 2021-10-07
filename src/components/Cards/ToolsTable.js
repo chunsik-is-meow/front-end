@@ -58,7 +58,7 @@ export default function ToolsTable() {
                   </span>
                 </th>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  localhost:8080
+                  <a href='http://localhost:8080'> 바로가기 </a>
                 </td>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                   <i className='fas fa-circle text-emerald-500 mr-2' /> running
@@ -81,7 +81,7 @@ export default function ToolsTable() {
                   </span>
                 </th>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  localhost:9090
+                  <a href='http://localhost:9090'> 바로가기 </a>
                 </td>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                   <i className='fas fa-circle text-emerald-500 mr-2' /> running
@@ -104,7 +104,7 @@ export default function ToolsTable() {
                   </span>
                 </th>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
-                  localhost:9091
+                  <a href='http://localhost:9091'> 바로가기 </a>
                 </td>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                   <i className='fas fa-circle text-emerald-500 mr-2' /> running

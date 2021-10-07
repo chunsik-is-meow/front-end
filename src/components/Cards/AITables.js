@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import AIService from '../../services/ai.service';
+import TradeService from '../../services/trade.service';
 import AuthService from '../../services/auth.service.js';
 import {Pagination} from '../Pagination/Pagination.js';
 import {paginate} from '../Pagination/Pagenate.js';
@@ -28,7 +29,8 @@ export default function AITable({color}) {
     performance: '',
     description: '',
     uploader: '',
-    version: ''
+    version: '',
+    price: ''
   });
 
   const handlePageChange = (page) => {
@@ -44,11 +46,22 @@ export default function AITable({color}) {
   }
 
   const handleShowModal = (items) => {
-    setModalDatas({title: items.name, language: items.language, performance: items.score, uploader: items.uploader, version: items.version, description: items.description});
+    setModalDatas({title: items.name, language: items.language, performance: items.score, uploader: items.uploader, version: items.version, description: items.description, price: items.price});
     setShowModal(true);
   };
 
   const donwloadModelFile = async (filename, uploader, version) => {
+    const date = new Date();
+    const timestamp = date.getFullYear() +
+              '-' + (date.getMonth() + 1) +
+              '-' + date.getDate() +
+              '-' + date.getHours() +
+              '-' + date.getMinutes() +
+              '-' + date.getSeconds();
+
+    const modelKey = 'A_' + modalDatas.uploader + '_' + modalDatas.title + '_' + modalDatas.version;
+    const params = [currentUser.username, modelKey, modalDatas.price, timestamp];
+    await TradeService.BuyModel(params);
     const filedata = await AIService.DownloadModel(filename, currentUser.username, uploader, version);
     const url = window.URL.createObjectURL(new Blob([filedata]));
     const link = document.createElement('a');
@@ -309,7 +322,7 @@ const TableBodyComponent = (props) => {
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
         <div className='flex items-center'>
           <button
-            className='bg-pink-500 text-white active:bg-pink-600 uppercase text-sm px-4 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none m-1 ease-linear transition-all duration-150'
+            className='bg-blueGray-600 text-white active:bg-blueGray-700 uppercase text-sm px-4 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none m-1 ease-linear transition-all duration-150'
             type='button'
             onClick={() => onShowModal(item)}
           >

@@ -6,7 +6,7 @@ import {Pagination} from '../Pagination/Pagination.js';
 import {paginate} from '../Pagination/Pagenate.js';
 
 // components
-const headattr = ['from', 'to', 'price', 'timestamp'];
+const headattr = ['from', 'to', 'amount', 'timestamp'];
 
 export default function MyPageTable({color}) {
   const currentUser = AuthService.getCurrentUser();
@@ -102,7 +102,7 @@ const TableHeaderComponent = (props) => {
       > 받는 사람
       </th>
     );
-  } else if (attr === 'price') {
+  } else if (attr === 'amount') {
     return (
       <th
         className={
@@ -160,7 +160,7 @@ const TableBodyComponent = (props) => {
         {item[attr]}
       </td>
     );
-  } else if (attr === 'price') {
+  } else if (attr === 'amount') {
     return (
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
         {item[attr]} meow

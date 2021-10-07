@@ -77,7 +77,7 @@ export default function DataTable({color}) {
                   (color === 'light' ? 'text-blueGray-700' : 'text-white')
                 }
               >
-                공공데이터
+                공공 데이터
               </h3>
             </div>
           </div>
@@ -314,7 +314,7 @@ const TableBodyComponent = (props) => {
       <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
         <div className='flex items-center'>
           <button
-            className='bg-pink-500 text-white active:bg-pink-600 uppercase text-sm px-4 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none m-1 ease-linear transition-all duration-150'
+            className='bg-blueGray-600 text-white active:bg-blueGray-700 uppercase text-sm px-4 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none m-1 ease-linear transition-all duration-150'
             type='button'
             onClick={() => onShowModal(item)}
           >
